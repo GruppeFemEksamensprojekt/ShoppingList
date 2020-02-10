@@ -27,6 +27,7 @@ namespace ShoppingList.ViewModel
         {
             ShoppingListList = ShoppingListSingleton.Instance.ShoppingListList;
             CreateShoppingListCommand = new RelayCommand(CreateShoppingList, null);
+            GoBackCommand = new RelayCommand(GoBackMethod, null);
             NavigateToCreateShoppingListCommand = new RelayCommand(NavigateToCreateShoppingList, null);
         }
         #endregion
@@ -49,6 +50,7 @@ namespace ShoppingList.ViewModel
         public string CategoryVM { get; set; }
         public string ShoppingListNameVM { get; set; }
         public ICommand CreateShoppingListCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
         public ICommand NavigateToCreateShoppingListCommand { get; set; }
         #endregion
 
@@ -92,6 +94,10 @@ namespace ShoppingList.ViewModel
                 PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
 
             }
+        }
+        public static void GoBackMethod()
+        {
+            ((Frame)Window.Current.Content).GoBack();
         }
 
         #endregion

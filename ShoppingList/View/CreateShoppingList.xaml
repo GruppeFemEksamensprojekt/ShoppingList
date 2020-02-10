@@ -24,6 +24,18 @@
                 FontWeight="Bold"
                 Text="HEADER" />
         </StackPanel>
+        <Button
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Stretch"
+            Command="{Binding GoBackCommand}">
+            <Button.Background>
+                <SolidColorBrush Opacity="0" />
+            </Button.Background>
+            <StackPanel>
+                <Image Height="20" Source="/Assets/BackImage.png" />
+            </StackPanel>
+        </Button>
         <StackPanel Grid.Row="1">
             <StackPanel>
                 <TextBox
