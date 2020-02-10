@@ -81,7 +81,7 @@ namespace ShoppingList.ViewModel
                 CloseButtonText = "Bol mig"
             };
 
-            if (string.IsNullOrEmpty(ShoppingListNameVM))
+            if (string.IsNullOrEmpty(ShoppingListNameVM) || string.IsNullOrEmpty(CategoryVM))
             {
                 await messageDialog.ShowAsync();
             }

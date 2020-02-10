@@ -30,7 +30,11 @@
                     Margin="0,0,0,10"
                     PlaceholderText="Navn"
                     Text="{Binding ShoppingListNameVM, Mode=TwoWay}" />
-                <ComboBox Margin="0,0,0,10" PlaceholderText="Kategori" />
+                <ComboBox
+                    Margin="0,0,0,10"
+                    ItemsSource="{Binding Category}"
+                    PlaceholderText="Kategori"
+                    SelectedValue="{Binding CategoryVM, Mode=TwoWay}" />
             </StackPanel>
             <Button
                 Grid.Row="1"
