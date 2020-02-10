@@ -33,5 +33,16 @@ namespace ShoppingList.Model
         }
 
         #endregion Properties
+
+        #region
+        public void AddListToCollection(ShoppingListModel eventObj)
+        {
+            ShoppingListList.Add(eventObj);
+        }
+        public void Remove(ShoppingListModel eventObj)
+        {
+            ShoppingListList.Remove(eventObj);
+        }
+        #endregion
     }
 }

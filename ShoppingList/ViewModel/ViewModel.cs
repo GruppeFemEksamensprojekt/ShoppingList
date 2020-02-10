@@ -54,7 +54,7 @@ namespace ShoppingList.ViewModel
         }
         public void CreateShoppingList()
         {
-            ShoppingListList.Add(new ShoppingListModel(ShoppingListNameVM));
+            ShoppingListSingleton.Instance.ShoppingListList.Add(new ShoppingListModel(ShoppingListNameVM));
         }
 
         #endregion
