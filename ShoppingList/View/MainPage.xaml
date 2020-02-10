@@ -26,10 +26,14 @@
         </StackPanel>
         <ListView
             Grid.Row="1"
-            ItemsSource="{Binding ProductList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding ShoppingListList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             SelectedItem="{Binding SelectedShoppingList, Mode=TwoWay}">
             <ListView.ItemTemplate>
-                <DataTemplate />
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock FontSize="100" Text="{Binding ShoppinglistName}" />
+                    </StackPanel>
+                </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </Grid>

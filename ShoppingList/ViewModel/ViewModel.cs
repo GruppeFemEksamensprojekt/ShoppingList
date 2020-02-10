@@ -17,12 +17,14 @@ namespace ShoppingList.ViewModel
         #region Constructor
         public ViewModel()
         {
-
+            ShoppingListList = new ObservableCollection<ShoppingListModel>();
+            ShoppingListList.Add(new ShoppingListModel("FiskeFars"));
         }
         #endregion
 
         #region Properties
         public ObservableCollection<ProductModel> ProductList { get; set; }
+        public ObservableCollection<ShoppingListModel> ShoppingListList { get; set; }
         public ShoppingListModel SelectedShoppingList
         {
             get { return _selectedShoppingList; }

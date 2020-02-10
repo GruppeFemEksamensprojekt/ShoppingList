@@ -10,7 +10,7 @@ namespace ShoppingList.Model
     public class ShoppingListModel
     {
         //Indkøbsliste Model
-        public string _shoppinglistName;
+        private string _shoppinglistName;
         public ObservableCollection<ProductModel> _productCatalog;
 
         public ShoppingListModel(string shoppinglistName)

@@ -9,10 +9,10 @@ namespace ShoppingList.Model
     public class ProductModel
     {
         // Vare model
-        public string _itemName;
-        public string _store;
-        public int _itemAmount;
-        public double _itemPrice;
+        private string _itemName;
+        private string _store;
+        private int _itemAmount;
+        private double _itemPrice;
 
         public ProductModel(string itemName, string store, int itemAmount, double itemPrice)
         {
