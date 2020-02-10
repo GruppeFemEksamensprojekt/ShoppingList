@@ -55,6 +55,7 @@ namespace ShoppingList.ViewModel
         public void CreateShoppingList()
         {
             ShoppingListSingleton.Instance.ShoppingListList.Add(new ShoppingListModel(ShoppingListNameVM));
+            ((Frame)Window.Current.Content).GoBack();
         }
 
         #endregion
