@@ -22,8 +22,8 @@ namespace ShoppingList.ViewModel
         #region Constructor
         public ViewModel()
         {
-            ShoppingListList = new ObservableCollection<ShoppingListModel>();
-            ShoppingListList.Add(new ShoppingListModel("FiskeFars"));
+            ShoppingListList = ShoppingListSingleton.Instance.ShoppingListList;
+            ShoppingListSingleton.Instance.ShoppingListList.Add(new ShoppingListModel("FiskeFars"));
             CreateShoppingListCommand = new RelayCommand(CreateShoppingList, null);
             NavigateToCreateShoppingListCommand = new RelayCommand(NavigateToCreateShoppingList, null);
         }
