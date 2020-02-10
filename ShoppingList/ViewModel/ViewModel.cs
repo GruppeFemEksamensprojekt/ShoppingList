@@ -11,7 +11,7 @@ namespace ShoppingList.ViewModel
     class ViewModel
     {
         #region Instance Fields
-        private ShoppingListCatalog _selectedShoppingList;
+        private ShoppingListModel _selectedShoppingList;
         #endregion
 
         #region Constructor
@@ -23,7 +23,7 @@ namespace ShoppingList.ViewModel
 
         #region Properties
         public ObservableCollection<ProductModel> ProductList { get; set; }
-        public ShoppingListCatalog SelectedShoppingList
+        public ShoppingListModel SelectedShoppingList
         {
             get { return _selectedShoppingList; }
             set { _selectedShoppingList = value; }

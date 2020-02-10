@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingList.Model
 {
-    public class ShoppingListCatalog
+    public class ShoppingListModel
     {
         //Indkøbsliste Model
 

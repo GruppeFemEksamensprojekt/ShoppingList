@@ -121,7 +121,7 @@
     </Compile>
     <Compile Include="Handlers\RelayCommand.cs" />
     <Compile Include="Model\ProductModel.cs" />
-    <Compile Include="Model\ShoppingListCatalog.cs" />
+    <Compile Include="Model\ShoppingListModel.cs" />
     <Compile Include="Persistancy\PersistancyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
