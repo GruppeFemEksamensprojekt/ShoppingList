@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using ShoppingList.Persistancy;
 
 namespace ShoppingList.ViewModel
 {
@@ -23,7 +24,6 @@ namespace ShoppingList.ViewModel
         public ViewModel()
         {
             ShoppingListList = ShoppingListSingleton.Instance.ShoppingListList;
-            ShoppingListSingleton.Instance.ShoppingListList.Add(new ShoppingListModel("FiskeFars"));
             CreateShoppingListCommand = new RelayCommand(CreateShoppingList, null);
             NavigateToCreateShoppingListCommand = new RelayCommand(NavigateToCreateShoppingList, null);
         }
@@ -56,6 +56,7 @@ namespace ShoppingList.ViewModel
         {
             ShoppingListSingleton.Instance.ShoppingListList.Add(new ShoppingListModel(ShoppingListNameVM));
             ((Frame)Window.Current.Content).GoBack();
+            PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
         }
 
         #endregion

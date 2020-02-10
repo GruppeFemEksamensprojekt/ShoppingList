@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShoppingList.Handlers;
+using ShoppingList.Persistancy;
 
 namespace ShoppingList.Model
 {
@@ -21,6 +23,7 @@ namespace ShoppingList.Model
         private ShoppingListSingleton()
         {
             ShoppingListList = new ObservableCollection<ShoppingListModel>();
+            LoadShoppingListAsync();
         }
 
         #endregion Constructors
@@ -42,6 +45,24 @@ namespace ShoppingList.Model
         public void Remove(ShoppingListModel eventObj)
         {
             ShoppingListList.Remove(eventObj);
+        }
+        public async void LoadShoppingListAsync()
+        {
+            PersistancyService.FileCreation();
+            ObservableCollection<ShoppingListModel> shopLists = await PersistancyService.LoadShopListFromJsonAsync();
+            ShoppingListSingleton.Instance.ShoppingListList.Clear();
+            if (shopLists == null)
+            {
+                ShoppingListList.Add(new ShoppingListModel("FiskeFars"));
+                PersistancyService.SaveShopListAsJsonAsync(ShoppingListList);
+            }
+            else
+            {
+                foreach (var shopList in shopLists)
+                {
+                    ShoppingListList.Add(shopList);
+                }
+            }
         }
         #endregion
     }
