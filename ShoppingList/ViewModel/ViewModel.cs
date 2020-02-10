@@ -19,6 +19,7 @@ namespace ShoppingList.ViewModel
     {
         #region Instance Fields
         private ShoppingListModel _selectedShoppingList;
+        private double _selectedListTotalPrice;
         #endregion
 
         #region Constructor
@@ -56,7 +57,17 @@ namespace ShoppingList.ViewModel
         {
             return SelectedShoppingList != null;
         }
-
+        public double SelectedListTotalPrice
+        {
+            get
+            {
+                foreach (ProductModel item in SelectedShoppingList.ProductCatalog)
+                {
+                    _selectedListTotalPrice = +item.ItemPrice;
+                }
+                return _selectedListTotalPrice;
+            }
+        }
         public void NavigateToCreateShoppingList()
         {
             ((Frame)Window.Current.Content).Navigate(typeof(CreateShoppingList));
