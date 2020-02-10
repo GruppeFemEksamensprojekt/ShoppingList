@@ -124,7 +124,6 @@
     <Compile Include="Model\ProductModel.cs" />
     <Compile Include="Model\ShoppingListModel.cs" />
     <Compile Include="Model\ShoppingListSingleton.cs" />
-    <Compile Include="Model\Vare.cs" />
     <Compile Include="Persistancy\PersistancyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
