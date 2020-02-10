@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="ShoppingList.View.MainPage"
+    x:Class="ShoppingList.View.ViewShoppingList"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ViewModel="using:ShoppingList.ViewModel"
@@ -27,23 +27,18 @@
         <Button
             Grid.Row="0"
             HorizontalAlignment="Right"
-            VerticalAlignment="Stretch"
             Background="Transparent"
-            Command="{Binding NavigateToCreateShoppingListCommand}"
+            Command="{Binding}"
             Content="+"
             FontSize="50" />
-        <ListView
-            Grid.Row="1"
-            ItemsSource="{Binding ShoppingListList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            SelectedItem="{Binding SelectedShoppingList, Mode=TwoWay}">
+        <ListView Grid.Row="1" ItemsSource="{Binding SelectedProductList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock FontSize="25" Text="{Binding ShoppinglistName, Mode=TwoWay}" />
-                        <TextBlock
-                            Margin="0,0,0,5"
-                            Opacity="0.5"
-                            Text="{Binding Category}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding ItemName}" />
+                        <TextBlock Text="{Binding Store}" />
+                        <TextBlock Text="{Binding ItemAmount}" />
+                        <TextBlock Text="{Binding ItemPrice}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

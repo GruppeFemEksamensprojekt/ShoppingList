@@ -53,7 +53,7 @@ namespace ShoppingList.Model
             ShoppingListSingleton.Instance.ShoppingListList.Clear();
             if (shopLists == null)
             {
-                ShoppingListList.Add(new ShoppingListModel("FiskeFars"));
+                ShoppingListList.Add(new ShoppingListModel("FiskeFars", ViewModel.ViewModel.Category[0]));
                 PersistancyService.SaveShopListAsJsonAsync(ShoppingListList);
             }
             else

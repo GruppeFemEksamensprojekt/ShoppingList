@@ -13,9 +13,10 @@ namespace ShoppingList.Model
         private string _shoppinglistName;
         private ObservableCollection<ProductModel> _productCatalog;
 
-        public ShoppingListModel(string shoppinglistName)
+        public ShoppingListModel(string shoppinglistName, string category)
         {
             _shoppinglistName = shoppinglistName;
+            Category = category;
             _productCatalog = new ObservableCollection<ProductModel>();
 
         }
@@ -32,6 +33,8 @@ namespace ShoppingList.Model
                 _productCatalog = value; 
             } 
         }
+
+        public string Category { get; set; }
         public string ListIsEmpty
         {
             get;
