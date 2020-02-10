@@ -23,7 +23,7 @@ namespace ShoppingList.Handlers
         {
             try
             {
-                var list = productCatalog.Where(product => product.Name.Contains(search.ToLower()));
+                var list = productCatalog.Where(product => product.ItemName.Contains(search.ToLower()));
                 return new ObservableCollection<ProductModel>(list);
             }
             catch (Exception e)
