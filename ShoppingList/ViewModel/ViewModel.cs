@@ -31,6 +31,13 @@ namespace ShoppingList.ViewModel
         #endregion
 
         #region Properties
+        public static List<string> Category
+        {
+            get
+            {
+                return new List<string> { "Opskrift", "Dagligvarer", "Sexlegetøj", "Andet" };
+            }
+        }
         public ObservableCollection<ProductModel> ProductList { get; set; }
         public ObservableCollection<ShoppingListModel> ShoppingListList { get; set; }
         public ShoppingListModel SelectedShoppingList
@@ -38,6 +45,7 @@ namespace ShoppingList.ViewModel
             get { return _selectedShoppingList; }
             set { _selectedShoppingList = value; }
         }
+        public string CategoryVM { get; set; }
         public string ShoppingListNameVM { get; set; }
         public ICommand CreateShoppingListCommand { get; set; }
         public ICommand NavigateToCreateShoppingListCommand { get; set; }
@@ -68,9 +76,9 @@ namespace ShoppingList.ViewModel
             }
             else
             {
-            ShoppingListSingleton.Instance.ShoppingListList.Add(new ShoppingListModel(ShoppingListNameVM));
-            ((Frame)Window.Current.Content).GoBack();
-            PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
+                ShoppingListSingleton.Instance.ShoppingListList.Add(new ShoppingListModel(ShoppingListNameVM, CategoryVM));
+                ((Frame)Window.Current.Content).GoBack();
+                PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
 
             }
         }

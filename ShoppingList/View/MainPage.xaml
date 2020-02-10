@@ -39,6 +39,7 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock FontSize="50" Text="{Binding ShoppinglistName, Mode=TwoWay}" />
+                        <TextBlock/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
