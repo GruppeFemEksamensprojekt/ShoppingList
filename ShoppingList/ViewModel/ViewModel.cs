@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using ShoppingList.Persistancy;
+using Windows.UI.Popups;
 
 namespace ShoppingList.ViewModel
 {
@@ -52,11 +53,26 @@ namespace ShoppingList.ViewModel
         {
             ((Frame)Window.Current.Content).Navigate(typeof(CreateShoppingList));
         }
-        public void CreateShoppingList()
+        public async void CreateShoppingList()
         {
+            ContentDialog messageDialog = new ContentDialog()
+            {
+                Title = "Fiskemand",
+                Content = "Fuck af",
+                CloseButtonText = "Bol mig"
+            };
+
+            if (string.IsNullOrEmpty(ShoppingListNameVM))
+            {
+                await messageDialog.ShowAsync();
+            }
+            else
+            {
             ShoppingListSingleton.Instance.ShoppingListList.Add(new ShoppingListModel(ShoppingListNameVM));
             ((Frame)Window.Current.Content).GoBack();
             PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
+
+            }
         }
 
         #endregion
