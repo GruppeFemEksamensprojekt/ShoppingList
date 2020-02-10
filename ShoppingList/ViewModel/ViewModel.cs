@@ -59,6 +59,11 @@ namespace ShoppingList.ViewModel
         {
             return SelectedShoppingList != null;
         }
+
+        public ObservableCollection<ProductModel> SelectedProductList
+        {
+            get { return SelectedShoppingList.ProductCatalog; }
+        }
         public double SelectedListTotalPrice
         {
             get
