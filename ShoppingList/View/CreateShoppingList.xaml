@@ -24,13 +24,29 @@
                 FontWeight="Bold"
                 Text="HEADER" />
         </StackPanel>
+        <Button
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Stretch"
+            Command="{Binding GoBackCommand}">
+            <Button.Background>
+                <SolidColorBrush Opacity="0" />
+            </Button.Background>
+            <StackPanel>
+                <Image Height="20" Source="/Assets/BackImage.png" />
+            </StackPanel>
+        </Button>
         <StackPanel Grid.Row="1">
             <StackPanel>
                 <TextBox
                     Margin="0,0,0,10"
                     PlaceholderText="Navn"
                     Text="{Binding ShoppingListNameVM, Mode=TwoWay}" />
-                <ComboBox Margin="0,0,0,10" PlaceholderText="Kategori" />
+                <ComboBox
+                    Margin="0,0,0,10"
+                    ItemsSource="{Binding Category}"
+                    PlaceholderText="Kategori"
+                    SelectedValue="{Binding CategoryVM, Mode=TwoWay}" />
             </StackPanel>
             <Button
                 Grid.Row="1"

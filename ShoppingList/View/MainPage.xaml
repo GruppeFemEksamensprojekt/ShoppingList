@@ -27,6 +27,7 @@
         <Button
             Grid.Row="0"
             HorizontalAlignment="Right"
+            VerticalAlignment="Stretch"
             Background="Transparent"
             Command="{Binding NavigateToCreateShoppingListCommand}"
             Content="+"
@@ -38,7 +39,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock FontSize="50" Text="{Binding ShoppinglistName, Mode=TwoWay}" />
+                        <TextBlock FontSize="25" Text="{Binding ShoppinglistName, Mode=TwoWay}" />
+                        <TextBlock
+                            Margin="0,0,0,5"
+                            Opacity="0.5"
+                            Text="{Binding Category}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
