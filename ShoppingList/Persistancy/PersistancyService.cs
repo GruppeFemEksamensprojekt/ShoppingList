@@ -12,20 +12,20 @@ namespace ShoppingList.Persistancy
 {
     public class PersistancyService
     {
-        private static string jsonFileNameEvents = "ShoppingListsAsJson.dat";
+        private static string jsonFileNameShopList = "ShoppingListsAsJson.dat";
 
 
-        public static async void SaveEventsAsJsonAsync(ObservableCollection<ShoppingListModel> shoppingList)
+        public static async void SaveShopListAsJsonAsync(ObservableCollection<ShoppingListModel> shoppingList)
         {
             string shoppingListJsonString = JsonConvert.SerializeObject(shoppingList);
-            SerializeEventsFileAsync(shoppingListJsonString, jsonFileNameEvents);
+            SerializeShopListFileAsync(shoppingListJsonString, jsonFileNameShopList);
         }
         public static async Task<ObservableCollection<ShoppingListModel>> LoadShopListFromJsonAsync()
         {
-            string shoppingListJsonString = await DeSerializeFileAsync(jsonFileNameEvents);
+            string shoppingListJsonString = await DeSerializeFileAsync(jsonFileNameShopList);
             return (ObservableCollection<ShoppingListModel>)JsonConvert.DeserializeObject(shoppingListJsonString, typeof(ObservableCollection<ShoppingListModel>));
         }
-        public static async void SerializeEventsFileAsync(string eventString, string fileName)
+        public static async void SerializeShopListFileAsync(string eventString, string fileName)
         {
             StorageFile localFile =
                 await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName,
@@ -40,9 +40,11 @@ namespace ShoppingList.Persistancy
 
         public static async void FileCreation()
         {
-            var item = await ApplicationData.Current.LocalFolder.TryGetItemAsync(jsonFileNameEvents);
+            var item = await ApplicationData.Current.LocalFolder.TryGetItemAsync(jsonFileNameShopList);
             if (item == null)
             {
-                StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(jsonFileNameEvents);
+                StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(jsonFileNameShopList);
             }
+        }
+    }
 }

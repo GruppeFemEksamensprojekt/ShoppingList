@@ -24,12 +24,21 @@
                 FontWeight="Bold"
                 Text="HEADER" />
         </StackPanel>
-        <Button
-            Grid.Row="0"
-            HorizontalAlignment="Right"
-            Background="Transparent"
-            Command="{Binding NavigateToCreateShoppingListCommand}"
-            Content="+"
-            FontSize="50" />
+        <StackPanel Grid.Row="1">
+            <StackPanel>
+                <TextBox
+                    Margin="0,0,0,10"
+                    PlaceholderText="Navn"
+                    Text="{Binding ShoppingListNameVM, Mode=TwoWay}" />
+                <ComboBox Margin="0,0,0,10" PlaceholderText="Kategori" />
+            </StackPanel>
+            <Button
+                Grid.Row="1"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Command="{Binding CreateShoppingListCommand}"
+                Content="TILFØJ"
+                FontSize="100" />
+        </StackPanel>
     </Grid>
 </Page>
