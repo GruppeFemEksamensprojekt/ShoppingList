@@ -1,10 +1,15 @@
-﻿using ShoppingList.Model;
+﻿using ShoppingList.Handlers;
+using ShoppingList.Model;
+using ShoppingList.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace ShoppingList.ViewModel
 {
@@ -19,6 +24,8 @@ namespace ShoppingList.ViewModel
         {
             ShoppingListList = new ObservableCollection<ShoppingListModel>();
             ShoppingListList.Add(new ShoppingListModel("FiskeFars"));
+            CreateShoppingListCommand = new RelayCommand(CreateShoppingList, null);
+            NavigateToCreateShoppingListCommand = new RelayCommand(NavigateToCreateShoppingList, null);
         }
         #endregion
 
@@ -30,12 +37,26 @@ namespace ShoppingList.ViewModel
             get { return _selectedShoppingList; }
             set { _selectedShoppingList = value; }
         }
+        public string ShoppingListNameVM { get; set; }
+        public ICommand CreateShoppingListCommand { get; set; }
+        public ICommand NavigateToCreateShoppingListCommand { get; set; }
         #endregion
+
         #region Methods
         public bool ShoppingListIsSelected()
         {
             return SelectedShoppingList != null;
         }
+
+        public void NavigateToCreateShoppingList()
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(CreateShoppingList));
+        }
+        public void CreateShoppingList()
+        {
+            ShoppingListList.Add(new ShoppingListModel(ShoppingListNameVM));
+        }
+
         #endregion
     }
 }
