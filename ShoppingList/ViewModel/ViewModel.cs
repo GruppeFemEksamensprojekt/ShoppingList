@@ -63,7 +63,7 @@ namespace ShoppingList.ViewModel
             {
                 foreach (ProductModel item in SelectedShoppingList.ProductCatalog)
                 {
-                    _selectedListTotalPrice = +item.ItemPrice;
+                    _selectedListTotalPrice =+ item.ItemPrice;
                 }
                 return _selectedListTotalPrice;
             }
