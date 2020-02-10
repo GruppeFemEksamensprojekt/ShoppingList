@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using ShoppingList.Annotations;
 using ShoppingList.Model;
 
 namespace ShoppingList.Handlers
 {
-    class SearchHandler
+    class SearchHandler : INotifyPropertyChanged
     {
+
         public bool Bought { get; set; } = false;
 
         public ObservableCollection<ProductModel> productCatalog { get; set; }
@@ -52,23 +56,27 @@ namespace ShoppingList.Handlers
 
         public ObservableCollection<ProductModel> SearchEngine(string search)
         {
-            try
+            ObservableCollection<ProductModel> Result = new ObservableCollection<ProductModel>();
+            ObservableCollection<ProductModel> Result1 = (SearchListName(search));
+            ObservableCollection<ProductModel> Result2 = (SearchListStore(search));
+            foreach (var result in Result1)
             {
-                if (SearchListName(search) == null)
-                {
-                    SearchListStore(search);
-                }
-                else if (SearchListStore(search) == null)
-                {
-                    SearchListName(search);
-                }
+                Result.Add(result);
             }
-            catch (Exception e)
+            foreach (var result in Result2)
             {
-                Console.WriteLine($"Din søgning på butikken {search}, gav ingen resultater\n{e}");
+                Result.Add(result);
             }
+            OnPropertyChanged();
+            return Result;
+        }
 
-            return null;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
