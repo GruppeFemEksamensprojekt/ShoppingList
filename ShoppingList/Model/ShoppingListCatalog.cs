@@ -8,6 +8,7 @@ namespace ShoppingList.Model
 {
     public class ShoppingListCatalog
     {
-        //Liste over indkøbslister
+        //Indkøbsliste Model
+
     }
 }

@@ -23,7 +23,14 @@
                 FontSize="100"
                 FontWeight="Bold"
                 Text="HEADER" />
-
         </StackPanel>
+        <ListView
+            Grid.Row="1"
+            ItemsSource="{Binding ProductList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding SelectedShoppingList, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate />
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
