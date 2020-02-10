@@ -20,7 +20,7 @@ namespace ShoppingList.Model
 
         }
 
-        public string ShoppinglistName { get; set; }
+        public string ShoppinglistName { get { return _shoppinglistName; } set { _shoppinglistName = value; } }
         public ObservableCollection<ProductModel> ProductCatalog
         {
             get 
