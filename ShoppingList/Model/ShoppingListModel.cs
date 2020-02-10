@@ -15,10 +15,12 @@ namespace ShoppingList.Model
 
         public ShoppingListModel(string shoppinglistName)
         {
+            _shoppinglistName = shoppinglistName;
             _productCatalog = new ObservableCollection<ProductModel>();
 
         }
 
+        public string ShoppinglistName { get; set; }
         public ObservableCollection<ProductModel> ProductCatalog
         {
             get 
