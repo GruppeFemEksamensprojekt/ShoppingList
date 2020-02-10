@@ -45,4 +45,6 @@ namespace ShoppingList.Persistancy
             {
                 StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(jsonFileNameEvents);
             }
+        }
+    }
 }
