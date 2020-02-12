@@ -29,6 +29,8 @@ namespace ShoppingList.ViewModel
             CreateShoppingListCommand = new RelayCommand(CreateShoppingList, null);
             GoBackCommand = new RelayCommand(GoBackMethod, null);
             NavigateToCreateShoppingListCommand = new RelayCommand(NavigateToCreateShoppingList, null);
+            NavigateToCreateItemCommand = new RelayCommand(NavigateToCreateItemMethod, null);
+            AddItemToSelectedShoppinglistProductlistCommand = new RelayCommand(AddItemToSelectedShoppinglistProductlistMethod, null);
         }
         #endregion
 
@@ -45,25 +47,44 @@ namespace ShoppingList.ViewModel
         public ShoppingListModel SelectedShoppingList
         {
             get { return _selectedShoppingList; }
-            set { _selectedShoppingList = value; }
+            set 
+            { 
+                _selectedShoppingList = value;
+                ((Frame)Window.Current.Content).Navigate(typeof(ViewShoppingList));
+            }
         }
         public string CategoryVM { get; set; }
         public string ShoppingListNameVM { get; set; }
         public ICommand CreateShoppingListCommand { get; set; }
         public ICommand GoBackCommand { get; set; }
         public ICommand NavigateToCreateShoppingListCommand { get; set; }
+        public ICommand NavigateToCreateItemCommand { get; set; }
+        public ICommand AddItemToSelectedShoppinglistProductlistCommand { get; set; }
+
+        #region Product Properties
+        public string ItemNameVM { get; set; }
+        public string StoreVM { get; set; }
+        public int ItemAmountVM { get; set; }
+        public string ItemAmountTypeVM { get; set; }
+        public double ItemPriceVM { get; set; }
+        #endregion
+
         #endregion
 
         #region Methods
+        public void AddItemToSelectedShoppinglistProductlistMethod()
+        {
+            _selectedShoppingList.ProductCatalog.Add(new ProductModel(ItemNameVM, StoreVM, ItemAmountVM, ItemAmountTypeVM, ItemPriceVM));
+        }
         public bool ShoppingListIsSelected()
         {
             return SelectedShoppingList != null;
         }
 
-        public ObservableCollection<ProductModel> SelectedProductList
-        {
-            get { return SelectedShoppingList.ProductCatalog; }
-        }
+        //public ObservableCollection<ProductModel> SelectedProductList
+        //{
+        //    get { return _selectedShoppingList.ProductCatalog; }
+        //}
         public double SelectedListTotalPrice
         {
             get
@@ -74,6 +95,11 @@ namespace ShoppingList.ViewModel
                 }
                 return _selectedListTotalPrice;
             }
+        }
+        public void NavigateToCreateItemMethod()
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(CreateItem));
+
         }
         public void NavigateToCreateShoppingList()
         {

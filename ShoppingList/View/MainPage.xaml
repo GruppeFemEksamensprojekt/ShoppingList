@@ -24,6 +24,7 @@
                 FontWeight="Bold"
                 Text="HEADER" />
         </StackPanel>
+
         <Button
             Grid.Row="0"
             HorizontalAlignment="Right"
@@ -32,21 +33,20 @@
             Command="{Binding NavigateToCreateShoppingListCommand}"
             Content="+"
             FontSize="50" />
-        <ListView
-            Grid.Row="1"
-            ItemsSource="{Binding ShoppingListList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            SelectedItem="{Binding SelectedShoppingList, Mode=TwoWay}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock FontSize="25" Text="{Binding ShoppinglistName, Mode=TwoWay}" />
-                        <TextBlock
-                            Margin="0,0,0,5"
-                            Opacity="0.5"
-                            Text="{Binding Category}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackPanel Grid.Row="1">
+            <ListView ItemsSource="{Binding ShoppingListList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedShoppingList, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock FontSize="25" Text="{Binding ShoppinglistName, Mode=TwoWay}" />
+                            <TextBlock
+                                Margin="0,0,0,5"
+                                Opacity="0.5"
+                                Text="{Binding Category}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>

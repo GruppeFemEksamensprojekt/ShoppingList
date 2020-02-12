@@ -17,28 +17,37 @@
             <RowDefinition />
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
+        <Button
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Stretch"
+            Command="{Binding GoBackCommand}">
+            <Button.Background>
+                <SolidColorBrush Opacity="0" />
+            </Button.Background>
+            <StackPanel>
+                <Image Height="20" Source="/Assets/BackImage.png" />
+            </StackPanel>
+        </Button>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock
                 FontFamily="Comic Sans MS"
                 FontSize="50"
                 FontWeight="Bold"
-                Text="HEADER" />
+                Text="Shopping List" />
         </StackPanel>
         <Button
             Grid.Row="0"
             HorizontalAlignment="Right"
             Background="Transparent"
-            Command="{Binding}"
+            Command="{Binding NavigateToCreateItemCommand}"
             Content="+"
             FontSize="50" />
-        <ListView Grid.Row="1" ItemsSource="{Binding SelectedProductList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView Grid.Row="1" ItemsSource="{Binding SelectedShoppingList.ProductCatalog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding ItemName}" />
-                        <TextBlock Text="{Binding Store}" />
-                        <TextBlock Text="{Binding ItemAmount}" />
-                        <TextBlock Text="{Binding ItemPrice}" />
+                        <TextBlock Text="{Binding ItemName, Mode=TwoWay}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
