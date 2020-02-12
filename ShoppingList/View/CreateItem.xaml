@@ -11,7 +11,7 @@
     <Page.DataContext>
         <ViewModel:ViewModel />
     </Page.DataContext>
-    <Grid Background="Gold">
+    <Grid Background="Beige">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />

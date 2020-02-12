@@ -12,7 +12,7 @@
         <ViewModel:ViewModel />
     </Page.DataContext>
 
-    <Grid Background="Gold">
+    <Grid Background="teal">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="6*" />

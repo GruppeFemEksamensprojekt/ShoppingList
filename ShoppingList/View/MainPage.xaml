@@ -11,42 +11,218 @@
     <Page.DataContext>
         <ViewModel:ViewModel />
     </Page.DataContext>
+    <Grid>
 
-    <Grid Background="Gold">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="6*" />
-        </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock
-                FontFamily="Comic Sans MS"
-                FontSize="50"
-                FontWeight="Bold"
-                Text="HEADER" />
-        </StackPanel>
+        <!--  FORSIDE OMG XD  -->
+        <Grid Background="Gold" Visibility="{Binding ShowFrontPageVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock
+                    FontFamily="Comic Sans MS"
+                    FontSize="50"
+                    FontWeight="Bold"
+                    Text="HEADER" />
+            </StackPanel>
+            <Button
+                Grid.Row="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                Background="Transparent"
+                Command="{Binding NavigateToCreateShoppingListCommand}"
+                Content="+"
+                FontSize="50" />
+            <StackPanel Grid.Row="1">
+                <ListView ItemsSource="{Binding ShoppingListList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedShoppingList, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock FontSize="25" Text="{Binding ShoppinglistName, Mode=TwoWay}" />
+                                <TextBlock
+                                    Margin="0,0,0,5"
+                                    Opacity="0.5"
+                                    Text="{Binding Category}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <!--  / FORSIDE XD  -->
 
-        <Button
-            Grid.Row="0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Stretch"
-            Background="Transparent"
-            Command="{Binding NavigateToCreateShoppingListCommand}"
-            Content="+"
-            FontSize="50" />
-        <StackPanel Grid.Row="1">
-            <ListView ItemsSource="{Binding ShoppingListList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedShoppingList, Mode=TwoWay}">
+        <!--  Selected Shoppinglist Page! (Tidligere ViewShoppingList.Xaml)  -->
+        <Grid Background="teal" Visibility="{Binding ShowViewShoppinglistPageVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+            <Button
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                Command="{Binding NavigateBackToFrontpageCommand}">
+                <Button.Background>
+                    <SolidColorBrush Opacity="0" />
+                </Button.Background>
+                <StackPanel>
+                    <Image Height="20" Source="/Assets/BackImage.png" />
+                </StackPanel>
+            </Button>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock
+                    FontFamily="Comic Sans MS"
+                    FontSize="50"
+                    FontWeight="Bold"
+                    Text="Shopping List" />
+            </StackPanel>
+            <Button
+                Grid.Row="0"
+                HorizontalAlignment="Right"
+                Background="Transparent"
+                Command="{Binding NavigateToCreateItemCommand}"
+                Content="+"
+                FontSize="50" />
+            <ListView Grid.Row="1" ItemsSource="{Binding SelectedShoppingList.ProductCatalog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock FontSize="25" Text="{Binding ShoppinglistName, Mode=TwoWay}" />
-                            <TextBlock
-                                Margin="0,0,0,5"
-                                Opacity="0.5"
-                                Text="{Binding Category}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding ItemName, Mode=TwoWay}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackPanel>
+        </Grid>
+        <!--  / Selected Shoppinglist Page!  -->
+
+        <!--  Create new shoppinglist Page! (Tidligere CreateShoppingList.Xaml)  -->
+        <Grid Background="CadetBlue" Visibility="{Binding ShowCreateShoppinglistPageVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock
+                    FontFamily="Comic Sans MS"
+                    FontSize="50"
+                    FontWeight="Bold"
+                    Text="HEADER" />
+            </StackPanel>
+            <Button
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                Command="{Binding NavigateBackToFrontpageCommand}">
+                <Button.Background>
+                    <SolidColorBrush Opacity="0" />
+                </Button.Background>
+                <StackPanel>
+                    <Image Height="20" Source="/Assets/BackImage.png" />
+                </StackPanel>
+            </Button>
+            <StackPanel Grid.Row="1">
+                <StackPanel>
+                    <TextBox
+                        Margin="0,0,0,10"
+                        PlaceholderText="Navn"
+                        Text="{Binding ShoppingListNameVM, Mode=TwoWay}" />
+                    <ComboBox
+                        Margin="0,0,0,10"
+                        ItemsSource="{Binding Category}"
+                        PlaceholderText="Kategori"
+                        SelectedValue="{Binding CategoryVM, Mode=TwoWay}" />
+                </StackPanel>
+                <Button
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding CreateShoppingListCommand}"
+                    Content="TILFØJ"
+                    FontSize="100" />
+            </StackPanel>
+        </Grid>
+        <!--  / Create new shoppinglist Page!  -->
+
+        <!--  Create Item Page!  (Tidligere CreateItem.Xaml)  -->
+        <Grid Background="Beige" Visibility="{Binding ShowCreateItemPageVisibility}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+            <Button
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                Command="{Binding NavigateBackToShoppingListPageCommand}">
+                <Button.Background>
+                    <SolidColorBrush Opacity="0" />
+                </Button.Background>
+                <StackPanel>
+                    <Image Height="20" Source="/Assets/BackImage.png" />
+                </StackPanel>
+            </Button>
+            <StackPanel
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <TextBlock
+                    FontFamily="Comic Sans MS"
+                    FontSize="50"
+                    FontWeight="Bold"
+                    Text="Opret vare" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+                <TextBox
+                    x:Name="VareUserInput"
+                    Margin="0,5"
+                    PlaceholderText="Vare navn"
+                    Text="{Binding ItemNameVM, Mode=TwoWay}" />
+                <StackPanel Margin="0,5" Orientation="Horizontal">
+                    <TextBox
+                        x:Name="VareMængdeUserInput"
+                        PlaceholderText="Mængde"
+                        Text="{Binding ItemAmountVM, Mode=TwoWay}"
+                        TextAlignment="Center" />
+                    <ComboBox
+                        Width="130"
+                        PlaceholderText="Vælg en type"
+                        SelectedValue="{Binding ItemAmountTypeVM, Mode=TwoWay}">
+                        <x:String>Gram</x:String>
+                        <x:String>Kilo</x:String>
+                        <x:String>Liter</x:String>
+                        <x:String>Stk</x:String>
+                    </ComboBox>
+                </StackPanel>
+                <TextBox
+                    x:Name="PrisUserInput"
+                    Margin="0,5"
+                    PlaceholderText="Vare pris (ca)"
+                    Text="{Binding ItemPriceVM, Mode=TwoWay}" />
+                <ComboBox
+                    Margin="0,5"
+                    PlaceholderText="Vælg en butik"
+                    SelectedValue="{Binding StoreVM, Mode=TwoWay}">
+                    <x:String>Netto</x:String>
+                    <x:String>Meny</x:String>
+                    <x:String>Føtex</x:String>
+                    <x:String>Rema 1000</x:String>
+                    <x:String>Aldi</x:String>
+                    <x:String>Lidl</x:String>
+                    <x:String>Fakta</x:String>
+                </ComboBox>
+                <Button
+                    Margin="0,5"
+                    HorizontalAlignment="Center"
+                    Command="{Binding AddItemToSelectedShoppinglistProductlistCommand}"
+                    Content="Tilføj vare" />
+            </StackPanel>
+        </Grid>
+        <!--  / Create Item Page! Page!  -->
+
     </Grid>
 </Page>
