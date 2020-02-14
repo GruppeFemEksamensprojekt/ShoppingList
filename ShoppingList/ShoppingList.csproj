@@ -128,6 +128,15 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="View\Include\CreateItemUC.xaml.cs">
+      <DependentUpon>CreateItemUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Include\CreateNewShoppingListUC.xaml.cs">
+      <DependentUpon>CreateNewShoppingListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Include\SelectedShoppingListPageUC.xaml.cs">
+      <DependentUpon>SelectedShoppingListPageUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -164,6 +173,18 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="View\Include\CreateItemUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Include\CreateNewShoppingListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Include\SelectedShoppingListPageUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
