@@ -2,16 +2,13 @@
     x:Class="ShoppingList.View.Include.CreateItemUC"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ShoppingList.View.Include"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:ShoppingList.ViewModel"
-    mc:Ignorable="d"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:ShoppingList.View.Include"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
-    d:DesignWidth="400">
-    <UserControl.DataContext>
-        <ViewModel:ViewModel/>
-    </UserControl.DataContext>
+    d:DesignWidth="400"
+    mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -22,10 +19,10 @@
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
         <Button
-                Grid.Column="0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Stretch"
-                Command="{Binding NavigateBackToShoppingListPageCommand}">
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Stretch"
+            Command="{Binding NavigateBackToShoppingListPageCommand}">
             <Button.Background>
                 <SolidColorBrush Opacity="0" />
             </Button.Background>
@@ -34,31 +31,31 @@
             </StackPanel>
         </Button>
         <StackPanel
-                Grid.ColumnSpan="2"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
             <TextBlock
-                    FontFamily="Comic Sans MS"
-                    FontSize="50"
-                    FontWeight="Bold"
-                    Text="Opret vare" />
+                FontFamily="Comic Sans MS"
+                FontSize="50"
+                FontWeight="Bold"
+                Text="Opret vare" />
         </StackPanel>
         <StackPanel Grid.Row="2" HorizontalAlignment="Center">
             <TextBox
-                    x:Name="VareUserInput"
-                    Margin="0,5"
-                    PlaceholderText="Vare navn"
-                    Text="{Binding ItemNameVM, Mode=TwoWay}" />
+                x:Name="VareUserInput"
+                Margin="0,5"
+                PlaceholderText="Vare navn"
+                Text="{Binding ItemNameVM, Mode=TwoWay}" />
             <StackPanel Margin="0,5" Orientation="Horizontal">
                 <TextBox
-                        x:Name="VareMængdeUserInput"
-                        PlaceholderText="Mængde"
-                        Text="{Binding ItemAmountVM, Mode=TwoWay}"
-                        TextAlignment="Center" />
+                    x:Name="VareMængdeUserInput"
+                    PlaceholderText="Mængde"
+                    Text="{Binding ItemAmountVM, Mode=TwoWay}"
+                    TextAlignment="Center" />
                 <ComboBox
-                        Width="130"
-                        PlaceholderText="Vælg en type"
-                        SelectedValue="{Binding ItemAmountTypeVM, Mode=TwoWay}">
+                    Width="130"
+                    PlaceholderText="Vælg en type"
+                    SelectedValue="{Binding ItemAmountTypeVM, Mode=TwoWay}">
                     <x:String>Gram</x:String>
                     <x:String>Kilo</x:String>
                     <x:String>Liter</x:String>
@@ -66,14 +63,14 @@
                 </ComboBox>
             </StackPanel>
             <TextBox
-                    x:Name="PrisUserInput"
-                    Margin="0,5"
-                    PlaceholderText="Vare pris (ca)"
-                    Text="{Binding ItemPriceVM, Mode=TwoWay}" />
+                x:Name="PrisUserInput"
+                Margin="0,5"
+                PlaceholderText="Vare pris (ca)"
+                Text="{Binding ItemPriceVM, Mode=TwoWay}" />
             <ComboBox
-                    Margin="0,5"
-                    PlaceholderText="Vælg en butik"
-                    SelectedValue="{Binding StoreVM, Mode=TwoWay}">
+                Margin="0,5"
+                PlaceholderText="Vælg en butik"
+                SelectedValue="{Binding StoreVM, Mode=TwoWay}">
                 <x:String>Netto</x:String>
                 <x:String>Meny</x:String>
                 <x:String>Føtex</x:String>
@@ -83,10 +80,10 @@
                 <x:String>Fakta</x:String>
             </ComboBox>
             <Button
-                    Margin="0,5"
-                    HorizontalAlignment="Center"
-                    Command="{Binding AddItemToSelectedShoppinglistProductlistCommand}"
-                    Content="Tilføj vare" />
+                Margin="0,5"
+                HorizontalAlignment="Center"
+                Command="{Binding AddItemToSelectedShoppinglistProductlistCommand}"
+                Content="Tilføj vare" />
         </StackPanel>
     </Grid>
 </UserControl>

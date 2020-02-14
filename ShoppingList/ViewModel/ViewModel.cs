@@ -94,7 +94,7 @@ namespace ShoppingList.ViewModel
         public double ItemPriceVM { get; set; }
         #endregion
 
-        #region Vibility Properties
+        #region  Vibility Properties
         public Visibility ShowFrontPageVisibility { get; set; }
         public Visibility ShowViewShoppinglistPageVisibility { get; set; }
         public Visibility ShowCreateShoppinglistPageVisibility { get; set; }
@@ -125,9 +125,6 @@ namespace ShoppingList.ViewModel
             }
         }
 
-
-
-
         public void AddItemToSelectedShoppinglistProductlistMethod()
         {
             //_selectedShoppingList.ProductCatalog.Add(new ProductModel(ItemNameVM, StoreVM, ItemAmountVM, ItemAmountTypeVM, ItemPriceVM));
@@ -135,60 +132,48 @@ namespace ShoppingList.ViewModel
             PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
         }
 
-
-
-
         public bool ShoppingListIsSelected()
         {
             return SelectedShoppingList != null;
+        }
+
+        public void RefreshVisiblityProperties()
+        {
+            OnPropertyChanged(nameof(ShowFrontPageVisibility));
+            OnPropertyChanged(nameof(ShowViewShoppinglistPageVisibility));
+            OnPropertyChanged(nameof(ShowCreateShoppinglistPageVisibility));
+            OnPropertyChanged(nameof(ShowCreateItemPageVisibility));
+        }
+        public void ChangeVisibility(Visibility frontpage, Visibility showViewShoppingPageVis, Visibility showCreateShoppinglistVis, Visibility showCreateItemPageVis)
+        {
+            ShowFrontPageVisibility = frontpage;
+            ShowViewShoppinglistPageVisibility = showViewShoppingPageVis;
+            ShowCreateShoppinglistPageVisibility = showCreateShoppinglistVis;
+            ShowCreateItemPageVisibility = showCreateItemPageVis;
         }
 
         #region "Navigation Methods" - Warning.. NOT VERY DRY CODE
         public void StartPageVisibility()
         {
             _selectedShoppingList = null;
-            ShowFrontPageVisibility = Visibility.Visible;
-            ShowViewShoppinglistPageVisibility = Visibility.Collapsed;
-            ShowCreateShoppinglistPageVisibility = Visibility.Collapsed;
-            ShowCreateItemPageVisibility = Visibility.Collapsed;
+            ChangeVisibility(Visibility.Visible, Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed);
             OnPropertyChanged(nameof(SelectedShoppingList));
-            OnPropertyChanged(nameof(ShowFrontPageVisibility));
-            OnPropertyChanged(nameof(ShowViewShoppinglistPageVisibility));
-            OnPropertyChanged(nameof(ShowCreateShoppinglistPageVisibility));
-            OnPropertyChanged(nameof(ShowCreateItemPageVisibility));
+            RefreshVisiblityProperties();
         }
         public void ShowViewShoppinglistPageMethod()
         {
-            ShowFrontPageVisibility = Visibility.Collapsed;
-            ShowViewShoppinglistPageVisibility = Visibility.Visible;
-            ShowCreateShoppinglistPageVisibility = Visibility.Collapsed;
-            ShowCreateItemPageVisibility = Visibility.Collapsed;
-            OnPropertyChanged(nameof(ShowFrontPageVisibility));
-            OnPropertyChanged(nameof(ShowViewShoppinglistPageVisibility));
-            OnPropertyChanged(nameof(ShowCreateShoppinglistPageVisibility));
-            OnPropertyChanged(nameof(ShowCreateItemPageVisibility));
+            ChangeVisibility(Visibility.Collapsed, Visibility.Visible, Visibility.Collapsed, Visibility.Collapsed);
+            RefreshVisiblityProperties();
         }
         public void ShowCreateShoppinglistPageMethod()
         {
-            ShowFrontPageVisibility = Visibility.Collapsed;
-            ShowViewShoppinglistPageVisibility = Visibility.Collapsed;
-            ShowCreateShoppinglistPageVisibility = Visibility.Visible;
-            ShowCreateItemPageVisibility = Visibility.Collapsed;
-            OnPropertyChanged(nameof(ShowFrontPageVisibility));
-            OnPropertyChanged(nameof(ShowViewShoppinglistPageVisibility));
-            OnPropertyChanged(nameof(ShowCreateShoppinglistPageVisibility));
-            OnPropertyChanged(nameof(ShowCreateItemPageVisibility));
+            ChangeVisibility(Visibility.Collapsed, Visibility.Collapsed, Visibility.Visible, Visibility.Collapsed);
+            RefreshVisiblityProperties();
         }
         public void ShowCreateItemPageMethod()
         {
-            ShowFrontPageVisibility = Visibility.Collapsed;
-            ShowViewShoppinglistPageVisibility = Visibility.Collapsed;
-            ShowCreateShoppinglistPageVisibility = Visibility.Collapsed;
-            ShowCreateItemPageVisibility = Visibility.Visible;
-            OnPropertyChanged(nameof(ShowFrontPageVisibility));
-            OnPropertyChanged(nameof(ShowViewShoppinglistPageVisibility));
-            OnPropertyChanged(nameof(ShowCreateShoppinglistPageVisibility));
-            OnPropertyChanged(nameof(ShowCreateItemPageVisibility));
+            ChangeVisibility(Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed, Visibility.Visible);
+            RefreshVisiblityProperties();
         }
         #endregion
         #endregion
