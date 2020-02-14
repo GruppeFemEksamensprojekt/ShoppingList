@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="6*" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Button
             Grid.Column="0"
@@ -27,10 +28,17 @@
                 <Image Height="20" Source="/Assets/BackImage.png" />
             </StackPanel>
         </Button>
+        <Button
+            Grid.Row="3"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Red"
+            Command="{Binding DeleteShoppingListCommand}"
+            Content="Delete" />
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock
                 FontFamily="Comic Sans MS"
-                FontSize="50"
+                FontSize="25"
                 FontWeight="Bold"
                 Text="Shopping List" />
         </StackPanel>

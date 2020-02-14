@@ -31,7 +31,7 @@ namespace ShoppingList.ViewModel
             ShoppingListList = ShoppingListSingleton.Instance.ShoppingListList;
             CreateShoppingListCommand = new RelayCommand(CreateShoppingList, null);
             AddItemToSelectedShoppinglistProductlistCommand = new RelayCommand(AddItemToSelectedShoppinglistProductlistMethod, null);
-
+            DeleteShoppingListCommand = new RelayCommand(DeleteShoppingList, null);
             NavigateToCreateShoppingListCommand = new RelayCommand(ShowCreateShoppinglistPageMethod, null);
             NavigateToCreateItemCommand = new RelayCommand(ShowCreateItemPageMethod, null);
             NavigateBackToFrontpageCommand = new RelayCommand(StartPageVisibility, null);
@@ -74,7 +74,7 @@ namespace ShoppingList.ViewModel
         #region Commands
         public ICommand CreateShoppingListCommand { get; set; }
         public ICommand AddItemToSelectedShoppinglistProductlistCommand { get; set; }
-
+        public ICommand DeleteShoppingListCommand { get; set; }
         public ICommand NavigateToCreateShoppingListCommand { get; set; }
         public ICommand NavigateToCreateItemCommand { get; set; }
         public ICommand NavigateBackToFrontpageCommand { get; set; }
@@ -174,6 +174,16 @@ namespace ShoppingList.ViewModel
         {
             ChangeVisibility(Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed, Visibility.Visible);
             RefreshVisiblityProperties();
+        }
+
+        public void DeleteShoppingList()
+        {
+            if (SelectedShoppingList != null)
+            {
+                ShoppingListSingleton.Instance.ShoppingListList.Remove(SelectedShoppingList);
+                PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
+                StartPageVisibility();
+            }
         }
         #endregion
         #endregion
