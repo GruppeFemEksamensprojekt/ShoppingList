@@ -41,7 +41,7 @@
             Command="{Binding NavigateToCreateItemCommand}"
             Content="+"
             FontSize="50" />
-        <ListView Grid.Row="1" ItemsSource="{Binding SelectedShoppingList.ProductCatalog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView Grid.Row="1" ItemsSource="{Binding ProductListOnSelectedShoppingList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -50,5 +50,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
     </Grid>
 </UserControl>

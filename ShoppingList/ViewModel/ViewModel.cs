@@ -21,6 +21,7 @@ namespace ShoppingList.ViewModel
     {
         #region Instance Fields
         private ShoppingListModel _selectedShoppingList;
+        private ProductModel _selectedShoppingListItemVM;
         private double _selectedListTotalPrice;
         #endregion
 
@@ -47,7 +48,8 @@ namespace ShoppingList.ViewModel
                 return new List<string> { "Opskrift", "Dagligvarer", "Sexlegetøj", "Andet" };
             }
         }
-        public ObservableCollection<ProductModel> ProductList { get; set; }
+        public ObservableCollection<ProductModel> ProductListOnSelectedShoppingList { get; set; }
+
         public ObservableCollection<ShoppingListModel> ShoppingListList { get; set; }
         public ShoppingListModel SelectedShoppingList
         {
@@ -55,6 +57,8 @@ namespace ShoppingList.ViewModel
             set 
             { 
                 _selectedShoppingList = value;
+                ProductListOnSelectedShoppingList = _selectedShoppingList.ProductCatalog;
+                OnPropertyChanged(nameof(ProductListOnSelectedShoppingList));
                 ShowViewShoppinglistPageMethod();
             }
         }
@@ -81,11 +85,6 @@ namespace ShoppingList.ViewModel
         public ICommand NavigateBackToShoppingListPageCommand { get; set; }
         #endregion
 
-        //public ObservableCollection<ProductModel> SelectedProductList
-        //{
-        //    get { return _selectedShoppingList.ProductCatalog; }
-        //}
-
         #region Product Properties
         public string ItemNameVM { get; set; }
         public string StoreVM { get; set; }
@@ -103,6 +102,11 @@ namespace ShoppingList.ViewModel
         #endregion
 
         #region Methods
+        public bool ShoppingListIsSelected()
+        {
+            return SelectedShoppingList != null;
+        }
+
         public async void CreateShoppingList()
         {
             ContentDialog messageDialog = new ContentDialog()
@@ -124,7 +128,6 @@ namespace ShoppingList.ViewModel
 
             }
         }
-
         public void AddItemToSelectedShoppinglistProductlistMethod()
         {
             //_selectedShoppingList.ProductCatalog.Add(new ProductModel(ItemNameVM, StoreVM, ItemAmountVM, ItemAmountTypeVM, ItemPriceVM));
@@ -132,10 +135,6 @@ namespace ShoppingList.ViewModel
             PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
         }
 
-        public bool ShoppingListIsSelected()
-        {
-            return SelectedShoppingList != null;
-        }
 
         public void RefreshVisiblityProperties()
         {
