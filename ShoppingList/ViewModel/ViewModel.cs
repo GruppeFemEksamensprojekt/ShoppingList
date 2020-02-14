@@ -57,8 +57,12 @@ namespace ShoppingList.ViewModel
             set 
             { 
                 _selectedShoppingList = value;
-                ProductListOnSelectedShoppingList = _selectedShoppingList.ProductCatalog;
+                if (_selectedShoppingList != null)
+                {
+                    ProductListOnSelectedShoppingList = _selectedShoppingList.ProductCatalog;
+                }
                 OnPropertyChanged(nameof(ProductListOnSelectedShoppingList));
+                OnPropertyChanged(nameof(SelectedListTotalPrice)); // FIX
                 ShowViewShoppinglistPageMethod();
             }
         }
@@ -68,11 +72,15 @@ namespace ShoppingList.ViewModel
         {
             get
             {
-                foreach (ProductModel item in SelectedShoppingList.ProductCatalog)
+                if (_selectedShoppingList != null)
                 {
-                    _selectedListTotalPrice =+ item.ItemPrice;
+                    foreach (ProductModel item in SelectedShoppingList.ProductCatalog)
+                    {
+                        _selectedListTotalPrice += item.ItemPrice;
+                    }
+                    return _selectedListTotalPrice;
                 }
-                return _selectedListTotalPrice;
+                return 0;
             }
         }
         #region Commands
@@ -115,7 +123,6 @@ namespace ShoppingList.ViewModel
                 Content = "Fuck af",
                 CloseButtonText = "Bol mig"
             };
-
             if (string.IsNullOrEmpty(ShoppingListNameVM) || string.IsNullOrEmpty(CategoryVM))
             {
                 await messageDialog.ShowAsync();
@@ -125,16 +132,14 @@ namespace ShoppingList.ViewModel
                 ShoppingListSingleton.Instance.ShoppingListList.Add(new ShoppingListModel(ShoppingListNameVM, CategoryVM));
                 StartPageVisibility();
                 PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
-
             }
         }
         public void AddItemToSelectedShoppinglistProductlistMethod()
         {
-            //_selectedShoppingList.ProductCatalog.Add(new ProductModel(ItemNameVM, StoreVM, ItemAmountVM, ItemAmountTypeVM, ItemPriceVM));
             ShoppingListSingleton.Instance.AddItemToSelectedShoppingList(_selectedShoppingList, new ProductModel(ItemNameVM, StoreVM, ItemAmountVM, ItemAmountTypeVM, ItemPriceVM));
             PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
+            ShowViewShoppinglistPageMethod();
         }
-
 
         public void RefreshVisiblityProperties()
         {
@@ -177,9 +182,9 @@ namespace ShoppingList.ViewModel
 
         public void DeleteShoppingList()
         {
-            if (SelectedShoppingList != null)
+            if (_selectedShoppingList != null)
             {
-                ShoppingListSingleton.Instance.ShoppingListList.Remove(SelectedShoppingList);
+                ShoppingListSingleton.Instance.ShoppingListList.Remove(_selectedShoppingList);
                 PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
                 StartPageVisibility();
             }

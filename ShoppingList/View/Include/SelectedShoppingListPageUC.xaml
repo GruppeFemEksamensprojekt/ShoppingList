@@ -6,8 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:ShoppingList.View.Include"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
     mc:Ignorable="d">
 
     <Grid Background="teal">
@@ -34,7 +32,7 @@
             VerticalAlignment="Stretch"
             Background="Red"
             Command="{Binding DeleteShoppingListCommand}"
-            Content="Delete" />
+            Content="Slet Indkøbsliste" />
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock
                 FontFamily="Comic Sans MS"
@@ -49,15 +47,76 @@
             Command="{Binding NavigateToCreateItemCommand}"
             Content="+"
             FontSize="50" />
-        <ListView Grid.Row="1" ItemsSource="{Binding ProductListOnSelectedShoppingList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding ItemName, Mode=TwoWay}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackPanel Grid.Row="1">
 
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="25"
+                FontWeight="SemiBold"
+                Foreground="Bisque"><Run Text="Total pris: " /><Run Text="{Binding SelectedListTotalPrice}" /><Run Text=",-" /></TextBlock>
+            <ListView Grid.Row="1" ItemsSource="{Binding ProductListOnSelectedShoppingList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#81a6c7" BorderThickness="0,0,0,1">
+                            <Grid Grid.Row="1" Margin="0,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Top"
+                                    FontSize="20"
+                                    FontWeight="SemiLight"
+                                    Foreground="Bisque"
+                                    Text="{Binding ItemName}" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Top"
+                                    FontSize="15"
+                                    FontWeight="SemiLight"
+                                    Foreground="Bisque">
+                                    <Run Text="Ca Pris:" />
+                                    <Run Text="{Binding ItemPrice}" />
+                                    <Run Text=",-" />
+                                </TextBlock>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    FontSize="20"
+                                    FontWeight="SemiLight"
+                                    Foreground="Bisque">
+                                    <Run Text="{Binding ItemAmount}" />
+                                    <Run Text="{Binding ItemAmountType}" />
+
+                                </TextBlock>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    FontSize="15"
+                                    FontWeight="SemiLight"
+                                    Foreground="Bisque"
+                                    Text="{Binding Store}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </UserControl>
