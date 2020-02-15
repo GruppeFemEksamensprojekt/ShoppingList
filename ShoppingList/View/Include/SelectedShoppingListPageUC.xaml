@@ -26,13 +26,16 @@
                 <Image Height="20" Source="/Assets/BackImage.png" />
             </StackPanel>
         </Button>
+
+
         <Button
             Grid.Row="3"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Background="Red"
+            Background="red"
             Command="{Binding DeleteShoppingListCommand}"
-            Content="Slet Indkøbsliste" />
+            Content="Slet Liste"
+            Foreground="White" />
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock
                 FontFamily="Comic Sans MS"
@@ -53,7 +56,8 @@
                 HorizontalAlignment="Center"
                 FontSize="25"
                 FontWeight="SemiBold"
-                Foreground="Bisque"><Run Text="Total pris: " /><Run Text="{Binding SelectedListTotalPrice}" /><Run Text=",-" /></TextBlock>
+                Foreground="Bisque"
+                Text="{Binding SelectedListTotalPrice}" />
             <ListView Grid.Row="1" ItemsSource="{Binding ProductListOnSelectedShoppingList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">

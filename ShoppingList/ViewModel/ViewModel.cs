@@ -60,29 +60,16 @@ namespace ShoppingList.ViewModel
                 if (_selectedShoppingList != null)
                 {
                     ProductListOnSelectedShoppingList = _selectedShoppingList.ProductCatalog;
+                    RefreshTotalPrice();
                 }
                 OnPropertyChanged(nameof(ProductListOnSelectedShoppingList));
-                OnPropertyChanged(nameof(SelectedListTotalPrice)); // FIX
+                OnPropertyChanged(nameof(SelectedListTotalPrice));
                 ShowViewShoppinglistPageMethod();
             }
         }
         public string CategoryVM { get; set; }
         public string ShoppingListNameVM { get; set; }
-        public double SelectedListTotalPrice
-        {
-            get
-            {
-                if (_selectedShoppingList != null)
-                {
-                    foreach (ProductModel item in SelectedShoppingList.ProductCatalog)
-                    {
-                        _selectedListTotalPrice += item.ItemPrice;
-                    }
-                    return _selectedListTotalPrice;
-                }
-                return 0;
-            }
-        }
+        public string SelectedListTotalPrice { get; set; }
         #region Commands
         public ICommand CreateShoppingListCommand { get; set; }
         public ICommand AddItemToSelectedShoppinglistProductlistCommand { get; set; }
@@ -138,6 +125,7 @@ namespace ShoppingList.ViewModel
         {
             ShoppingListSingleton.Instance.AddItemToSelectedShoppingList(_selectedShoppingList, new ProductModel(ItemNameVM, StoreVM, ItemAmountVM, ItemAmountTypeVM, ItemPriceVM));
             PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
+            RefreshTotalPrice();
             ShowViewShoppinglistPageMethod();
         }
 
@@ -179,7 +167,11 @@ namespace ShoppingList.ViewModel
             ChangeVisibility(Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed, Visibility.Visible);
             RefreshVisiblityProperties();
         }
-
+        public void RefreshTotalPrice()
+        {
+            SelectedListTotalPrice = _selectedShoppingList.TotalProductListPrice;
+            OnPropertyChanged(nameof(SelectedListTotalPrice));
+        }
         public void DeleteShoppingList()
         {
             if (_selectedShoppingList != null)
