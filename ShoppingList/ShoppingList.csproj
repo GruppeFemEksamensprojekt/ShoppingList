@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\FilterHandler.cs" />
     <Compile Include="Handlers\RelayCommand.cs" />
     <Compile Include="Handlers\SearchHandler.cs" />
     <Compile Include="Model\ProductModel.cs" />
