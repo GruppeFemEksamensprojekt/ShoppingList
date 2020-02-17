@@ -33,5 +33,5 @@ namespace ShoppingList.Model
         public string ItemPrice { get { return _itemPrice; } set { _itemPrice = value; } }
         public string ItemCatagory { get{return _itemCatagory; } set { _itemCatagory = value; }
         }
-    }
+    }   
 }
