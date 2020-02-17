@@ -6,6 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.WindowManagement;
+using Windows.UI.Xaml.Controls;
 using ShoppingList.Annotations;
 using ShoppingList.Model;
 
@@ -33,7 +35,13 @@ namespace ShoppingList.Handlers
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Din søgning på produktet {search}, gav ingen resultater\n{e}");
+                 ContentDialog NoNameSearch = new ContentDialog()
+                {
+                    Title = "No result from namesearch",
+                    Content = $"Din søgning på produktet {search}, gav ingen resultater\n{e}",
+                    CloseButtonText = "Ok"
+                };
+                NoNameSearch.ShowAsync();
             }
 
             return null;
@@ -48,7 +56,13 @@ namespace ShoppingList.Handlers
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Din søgning på butikken {search}, gav ingen resultater\n{e}");
+                ContentDialog NoStoreSearch = new ContentDialog()
+                {
+                    Title = "No result from namesearch",
+                    Content = $"Din søgning på produktet {search}, gav ingen resultater\n{e}",
+                    CloseButtonText = "Ok"
+                };
+
             }
 
             return null;
