@@ -11,11 +11,11 @@ namespace ShoppingList.Model
         // Vare model
         private string _itemName;
         private string _store;
-        private int _itemAmount;
+        private string _itemAmount;
         private string _itemAmountType;
-        private double _itemPrice;
+        private string _itemPrice;
 
-        public ProductModel(string itemName, string store, int itemAmount, string itemAmountType, double itemPrice)
+        public ProductModel(string itemName, string store, string itemAmount, string itemAmountType, string itemPrice)
         {
             _itemName = itemName;
             _store = store;
@@ -26,8 +26,8 @@ namespace ShoppingList.Model
 
         public string ItemName { get { return _itemName; } set { _itemName = value; } }
         public string Store { get { return _store; } set { _store = value; } }
-        public int ItemAmount { get { return _itemAmount; } set { _itemAmount = value; } }
+        public string ItemAmount { get { return _itemAmount; } set { _itemAmount = value; } }
         public string ItemAmountType { get { return _itemAmountType; } set { _itemAmountType = value; } }
-        public double ItemPrice { get { return _itemPrice; } set { _itemPrice = value; } }
+        public string ItemPrice { get { return _itemPrice; } set { _itemPrice = value; } }
     }
 }

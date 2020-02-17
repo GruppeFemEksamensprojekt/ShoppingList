@@ -42,7 +42,7 @@ namespace ShoppingList.Model
                 double result = 0;
                 foreach (ProductModel item in this.ProductCatalog)
                 {
-                    result += item.ItemPrice;
+                    result += Convert.ToDouble(item.ItemPrice);
                 }
                 return "Total pris: "+result+",-";
             } 

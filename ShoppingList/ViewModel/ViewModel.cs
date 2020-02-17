@@ -83,9 +83,9 @@ namespace ShoppingList.ViewModel
         #region Product Properties
         public string ItemNameVM { get; set; }
         public string StoreVM { get; set; }
-        public int ItemAmountVM { get; set; }
+        public string ItemAmountVM { get; set; }
         public string ItemAmountTypeVM { get; set; }
-        public double ItemPriceVM { get; set; }
+        public string ItemPriceVM { get; set; }
         #endregion
 
         #region  Vibility Properties

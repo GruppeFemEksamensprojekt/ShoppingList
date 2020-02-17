@@ -76,6 +76,10 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
+                                <CheckBox
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"/>
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="0"
