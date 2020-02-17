@@ -86,6 +86,7 @@ namespace ShoppingList.ViewModel
         public string ItemAmountVM { get; set; }
         public string ItemAmountTypeVM { get; set; }
         public string ItemPriceVM { get; set; }
+        public string ItemCatagoryVM { get; set; }
         #endregion
 
         #region  Vibility Properties
@@ -123,7 +124,7 @@ namespace ShoppingList.ViewModel
         }
         public void AddItemToSelectedShoppinglistProductlistMethod()
         {
-            ShoppingListSingleton.Instance.AddItemToSelectedShoppingList(_selectedShoppingList, new ProductModel(ItemNameVM, StoreVM, ItemAmountVM, ItemAmountTypeVM, ItemPriceVM));
+            ShoppingListSingleton.Instance.AddItemToSelectedShoppingList(_selectedShoppingList, new ProductModel(ItemNameVM, StoreVM, ItemAmountVM, ItemAmountTypeVM, ItemPriceVM, ItemCatagoryVM));
             PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
             RefreshTotalPrice();
             ShowViewShoppinglistPageMethod();
