@@ -149,11 +149,6 @@ namespace ShoppingList.ViewModel
             ShowCreateItemPageVisibility = showCreateItemPageVis;
         }
 
-        public void OnSort(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         #region "Navigation Methods" - Warning.. NOT VERY DRY CODE
         public void StartPageVisibility()
         {
