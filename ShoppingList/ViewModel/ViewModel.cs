@@ -14,6 +14,7 @@ using ShoppingList.Persistancy;
 using Windows.UI.Popups;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using ShoppingList.View.Include;
 
 namespace ShoppingList.ViewModel
 {
@@ -143,6 +144,11 @@ namespace ShoppingList.ViewModel
             ShowViewShoppinglistPageVisibility = showViewShoppingPageVis;
             ShowCreateShoppinglistPageVisibility = showCreateShoppinglistVis;
             ShowCreateItemPageVisibility = showCreateItemPageVis;
+        }
+
+        public void OnSort(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         #region "Navigation Methods" - Warning.. NOT VERY DRY CODE
