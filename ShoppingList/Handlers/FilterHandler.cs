@@ -44,14 +44,5 @@ namespace ShoppingList.Handlers
         {
             Filter("Majeriprodukter");
         }
-
-
-
-
-
-
-
-
-
     }
 }
