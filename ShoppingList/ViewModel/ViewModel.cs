@@ -34,6 +34,7 @@ namespace ShoppingList.ViewModel
             CreateShoppingListCommand = new RelayCommand(CreateShoppingList, null);
             AddItemToSelectedShoppinglistProductlistCommand = new RelayCommand(AddItemToSelectedShoppinglistProductlistMethod, null);
             DeleteShoppingListCommand = new RelayCommand(DeleteShoppingList, null);
+            DeleteShoppingListItemCommand = new RelayCommand(DeleteShoppingListItem, null);
             NavigateToCreateShoppingListCommand = new RelayCommand(ShowCreateShoppinglistPageMethod, null);
             NavigateToCreateItemCommand = new RelayCommand(ShowCreateItemPageMethod, null);
             NavigateBackToFrontpageCommand = new RelayCommand(StartPageVisibility, null);
@@ -50,6 +51,7 @@ namespace ShoppingList.ViewModel
             }
         }
         public ObservableCollection<ProductModel> ProductListOnSelectedShoppingList { get; set; }
+        public ProductModel ProductListOnSelectedShoppingListItem { get; set; }
 
         public ObservableCollection<ShoppingListModel> ShoppingListList { get; set; }
         public ShoppingListModel SelectedShoppingList
@@ -75,12 +77,13 @@ namespace ShoppingList.ViewModel
         public ICommand CreateShoppingListCommand { get; set; }
         public ICommand AddItemToSelectedShoppinglistProductlistCommand { get; set; }
         public ICommand DeleteShoppingListCommand { get; set; }
+        public ICommand DeleteShoppingListItemCommand { get; set; }
         public ICommand NavigateToCreateShoppingListCommand { get; set; }
         public ICommand NavigateToCreateItemCommand { get; set; }
         public ICommand NavigateBackToFrontpageCommand { get; set; }
         public ICommand NavigateBackToShoppingListPageCommand { get; set; }
         #endregion
-
+        
         #region Product Properties
         public string ItemNameVM { get; set; }
         public string StoreVM { get; set; }
@@ -186,6 +189,16 @@ namespace ShoppingList.ViewModel
                 ShoppingListSingleton.Instance.ShoppingListList.Remove(_selectedShoppingList);
                 PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
                 StartPageVisibility();
+            }
+        }
+
+        public void DeleteShoppingListItem()
+        {
+            if (_selectedShoppingList != null)
+            {
+                ProductListOnSelectedShoppingList.Remove(ProductListOnSelectedShoppingListItem);   
+                PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
+                RefreshTotalPrice();
             }
         }
         #endregion

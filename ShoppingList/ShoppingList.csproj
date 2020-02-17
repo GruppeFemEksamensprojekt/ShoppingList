@@ -148,6 +148,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\3-dots-menu.png" />
+    <Content Include="Assets\Add new.png" />
     <Content Include="Assets\BackImage.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
