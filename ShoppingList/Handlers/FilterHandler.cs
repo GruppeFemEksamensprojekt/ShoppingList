@@ -17,8 +17,6 @@ namespace ShoppingList.Handlers
         {
             productCatalogFilters = new ObservableCollection<ProductModel>();
         }
-        
-
         private ObservableCollection<ProductModel> Filter(string category)
         {
            var list = ViewModelRef.ProductListOnSelectedShoppingList.Where(x => x.ItemCatagory == category);
