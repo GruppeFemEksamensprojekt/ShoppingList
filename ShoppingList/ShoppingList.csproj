@@ -125,7 +125,6 @@
     <Compile Include="Model\ProductModel.cs" />
     <Compile Include="Model\ShoppingListModel.cs" />
     <Compile Include="Model\ShoppingListSingleton.cs" />
-    <Compile Include="ObservableCollectionExtensions.cs" />
     <Compile Include="Persistancy\PersistancyService.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
