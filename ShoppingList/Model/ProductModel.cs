@@ -24,10 +24,10 @@ namespace ShoppingList.Model
             _itemPrice = itemPrice;
         }
 
-        public string ItemName { get; set; }
-        public string Store { get; set; }
-        public int ItemAmount { get; set; }
-        public string ItemAmountType { get; set; }
-        public double ItemPrice { get; set; }
+        public string ItemName { get { return _itemName; } set { _itemName = value; } }
+        public string Store { get { return _store; } set { _store = value; } }
+        public int ItemAmount { get { return _itemAmount; } set { _itemAmount = value; } }
+        public string ItemAmountType { get { return _itemAmountType; } set { _itemAmountType = value; } }
+        public double ItemPrice { get { return _itemPrice; } set { _itemPrice = value; } }
     }
 }

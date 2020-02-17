@@ -38,10 +38,28 @@ namespace ShoppingList.Model
         #endregion Properties
 
         #region
-        public void AddListToCollection(ShoppingListModel eventObj)
+        public void AddListToCollection(ShoppingListModel shoppingListObj)
         {
-            ShoppingListList.Add(eventObj);
+            ShoppingListList.Add(shoppingListObj);
         }
+
+
+
+
+        public void AddItemToSelectedShoppingList(ShoppingListModel selectedShoppingListObj, ProductModel productModel)
+        {
+            foreach (ShoppingListModel item in ShoppingListList)
+            {
+                if (item == selectedShoppingListObj)
+                {
+                    item.ProductCatalog.Add(productModel);
+                    break;
+                }
+            }
+        }
+
+
+
         public void Remove(ShoppingListModel eventObj)
         {
             ShoppingListList.Remove(eventObj);

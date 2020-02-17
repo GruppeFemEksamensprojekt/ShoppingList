@@ -128,17 +128,17 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
-    <Compile Include="View\CreateItem.xaml.cs">
-      <DependentUpon>CreateItem.xaml</DependentUpon>
+    <Compile Include="View\Include\CreateItemUC.xaml.cs">
+      <DependentUpon>CreateItemUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CreateShoppingList.xaml.cs">
-      <DependentUpon>CreateShoppingList.xaml</DependentUpon>
+    <Compile Include="View\Include\CreateNewShoppingListUC.xaml.cs">
+      <DependentUpon>CreateNewShoppingListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Include\SelectedShoppingListPageUC.xaml.cs">
+      <DependentUpon>SelectedShoppingListPageUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ViewShoppingList.xaml.cs">
-      <DependentUpon>ViewShoppingList.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -173,19 +173,19 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="View\CreateItem.xaml">
+    <Page Include="View\Include\CreateItemUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CreateShoppingList.xaml">
+    <Page Include="View\Include\CreateNewShoppingListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Include\SelectedShoppingListPageUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ViewShoppingList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,6 +35,18 @@ namespace ShoppingList.Model
         }
 
         public string Category { get; set; }
+        public string TotalProductListPrice 
+        { 
+            get
+            {
+                double result = 0;
+                foreach (ProductModel item in this.ProductCatalog)
+                {
+                    result += item.ItemPrice;
+                }
+                return "Total pris: "+result+",-";
+            } 
+        }
         public string ListIsEmpty
         {
             get;
