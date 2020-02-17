@@ -26,16 +26,6 @@
                 <Image Height="20" Source="/Assets/BackImage.png" />
             </StackPanel>
         </Button>
-
-
-        <Button
-            Grid.Row="3"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Background="red"
-            Command="{Binding DeleteShoppingListCommand}"
-            Content="Slet Liste"
-            Foreground="White" />
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock
                 FontFamily="Comic Sans MS"
@@ -43,13 +33,43 @@
                 FontWeight="Bold"
                 Text="Shopping List" />
         </StackPanel>
-        <Button
+        <StackPanel
             Grid.Row="0"
             HorizontalAlignment="Right"
-            Background="Transparent"
-            Command="{Binding NavigateToCreateItemCommand}"
-            Content="+"
-            FontSize="50" />
+            Orientation="Horizontal">
+            <Button
+                HorizontalAlignment="Right"
+                Background="Transparent"
+                Command="{Binding NavigateToCreateItemCommand}"
+                FontSize="50"
+                Foreground="Black">
+                <Image Width="30" Source="../../Assets/Add new.png" />
+            </Button>
+            <Button
+                HorizontalAlignment="Right"
+                Background="Transparent"
+                FontSize="50">
+                <Image Width="30" Source="../../Assets/3-dots-menu.png" />
+                <Button.Flyout>
+                    <Flyout>
+                        <StackPanel>
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Command="{Binding DeleteShoppingListItemCommand}"
+                                Content="Slet Vare"
+                                Foreground="White" />
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Command="{Binding DeleteShoppingListCommand}"
+                                Content="Slet Liste"
+                                Foreground="White" />
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+        </StackPanel>
         <StackPanel Grid.Row="1">
 
             <TextBlock
@@ -58,7 +78,10 @@
                 FontWeight="SemiBold"
                 Foreground="Bisque"
                 Text="{Binding SelectedListTotalPrice}" />
-            <ListView Grid.Row="1" ItemsSource="{Binding ProductListOnSelectedShoppingList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView
+                Grid.Row="1"
+                ItemsSource="{Binding ProductListOnSelectedShoppingList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding ProductListOnSelectedShoppingListItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
