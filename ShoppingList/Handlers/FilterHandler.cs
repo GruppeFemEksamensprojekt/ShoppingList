@@ -10,18 +10,17 @@ namespace ShoppingList.Handlers
 {
     public class FilterHandler
     {
-        private ObservableCollection<ProductModel> productCatalogFilters { get; set; }
+        public ObservableCollection<ProductModel> productCatalogFilters { get; set; }
         private ViewModel.ViewModel ViewModelRef;
 
-        private FilterHandler()
+        public FilterHandler()
         {
             productCatalogFilters = new ObservableCollection<ProductModel>();
         }
         private ObservableCollection<ProductModel> Filter(string category)
-        {
-            ObservableCollection<ProductModel> Results;
-           var list = ViewModelRef.ProductListOnSelectedShoppingList.Where(x => x.ItemCatagory == category);
-           return Results = new ObservableCollection<ProductModel>(list);
+        { 
+            var list = ViewModelRef.ProductListOnSelectedShoppingList.Where(x => x.ItemCatagory == category);
+           return productCatalogFilters = new ObservableCollection<ProductModel>(list);
         }
         public void FilterVeggies()
         {

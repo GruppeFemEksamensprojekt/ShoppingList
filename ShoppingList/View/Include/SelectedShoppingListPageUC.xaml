@@ -71,6 +71,12 @@
                                 Command="{Binding SortCommand}"
                                 Content="Sort Liste"
                                 Foreground="White" />
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Command="{Binding FilterFruitCommand}"
+                                Content="filterTest"
+                                Foreground="White" />
                         </StackPanel>
                     </Flyout>
                 </Button.Flyout>

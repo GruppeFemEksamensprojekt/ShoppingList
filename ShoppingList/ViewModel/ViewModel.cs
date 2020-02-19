@@ -40,6 +40,7 @@ namespace ShoppingList.ViewModel
             NavigateBackToFrontpageCommand = new RelayCommand(StartPageVisibility, null);
             NavigateBackToShoppingListPageCommand = new RelayCommand(ShowViewShoppinglistPageMethod, null);
             SortCommand = new RelayCommand(ConvertAndSort, null);
+            FilterFruitCommand =  new RelayCommand(FilterVeggies, null);
         }
         #endregion
 
@@ -85,6 +86,7 @@ namespace ShoppingList.ViewModel
         public ICommand NavigateBackToFrontpageCommand { get; set; }
         public ICommand NavigateBackToShoppingListPageCommand { get; set; }
         public ICommand SortCommand { get; set; }
+        public ICommand FilterFruitCommand { get; set; }
         #endregion
         
         #region Product Properties
@@ -171,6 +173,13 @@ namespace ShoppingList.ViewModel
         public void FilterVeggies()
         {
             filter.FilterVeggies();
+            ObservableCollection<ProductModel> Copy = new ObservableCollection<ProductModel>(ProductListOnSelectedShoppingList);
+            ProductListOnSelectedShoppingList.Clear();
+            foreach (var item in filter.productCatalogFilters)
+            {
+            ProductListOnSelectedShoppingList.Add(item);
+
+            }
         }
 
         public void FilterMeat()
