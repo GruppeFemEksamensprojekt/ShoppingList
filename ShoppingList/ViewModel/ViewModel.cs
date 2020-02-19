@@ -177,7 +177,7 @@ namespace ShoppingList.ViewModel
             ProductListOnSelectedShoppingList.Clear();
             foreach (var item in filter.productCatalogFilters)
             {
-            ProductListOnSelectedShoppingList.Add(item);
+                ProductListOnSelectedShoppingList.Add(item);
 
             }
         }
