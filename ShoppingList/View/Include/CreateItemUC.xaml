@@ -67,11 +67,23 @@
                 Margin="0,5"
                 PlaceholderText="Vare pris (ca)"
                 Text="{Binding ItemPriceVM, Mode=TwoWay}" />
-            <TextBox
+            <!--<TextBox
                 x:Name="ItemCatagoryUserInput"
                 Margin="0,5"
                 PlaceholderText="Vare catagory"
-                Text="{Binding ItemCatagoryVM, Mode=TwoWay}" />
+                Text="{Binding ItemCatagoryVM, Mode=TwoWay}" />-->
+            <ComboBox
+                Margin="0,5"
+                PlaceholderText="Vare kategory"
+                SelectedValue="{Binding ItemCatagoryVM, Mode=TwoWay}">
+                <x:String>Frugt og Grønt</x:String>
+                <x:String>Kød</x:String>
+                <x:String>Alkohol</x:String>
+                <x:String>Mælkeprodukter</x:String>
+                <x:String>Desserter</x:String>
+                <x:String>Slik og Chips</x:String>
+                <x:String>Diverse</x:String>
+            </ComboBox>
             <ComboBox
                 Margin="0,5"
                 PlaceholderText="Vælg en butik"

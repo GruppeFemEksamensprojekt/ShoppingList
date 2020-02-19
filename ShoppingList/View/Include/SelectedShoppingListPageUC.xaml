@@ -106,10 +106,6 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <CheckBox
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    VerticalAlignment="Center"/>
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="0"
@@ -119,7 +115,7 @@
                                     Foreground="Bisque"
                                     Text="{Binding ItemName}" />
                                 <TextBlock
-                                    Grid.Row="1"
+                                    Grid.Row="2"
                                     Grid.Column="0"
                                     VerticalAlignment="Top"
                                     FontSize="15"
