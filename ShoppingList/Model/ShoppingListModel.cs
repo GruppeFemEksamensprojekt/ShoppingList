@@ -12,40 +12,51 @@ namespace ShoppingList.Model
         //Indkøbsliste Model
         private string _shoppinglistName;
         private ObservableCollection<ProductModel> _productCatalog;
+        private ObservableCollection<ProductModel> _boughtProductList;
 
         public ShoppingListModel(string shoppinglistName, string category)
         {
             _shoppinglistName = shoppinglistName;
             Category = category;
             _productCatalog = new ObservableCollection<ProductModel>();
+            _boughtProductList = new ObservableCollection<ProductModel>();
 
         }
 
         public string ShoppinglistName { get { return _shoppinglistName; } set { _shoppinglistName = value; } }
         public ObservableCollection<ProductModel> ProductCatalog
         {
-            get 
+            get
             {
-                return _productCatalog; 
-            } 
+                return _productCatalog;
+            }
             set
             {
-                _productCatalog = value; 
-            } 
+                _productCatalog = value;
+            }
+        }
+        public ObservableCollection<ProductModel> BoughtProductList
+        {
+            get { return _boughtProductList; }
+            set { _boughtProductList = value; }
         }
 
         public string Category { get; set; }
-        public string TotalProductListPrice 
-        { 
+        public string TotalProductListPrice
+        {
             get
             {
                 double result = 0;
-                foreach (ProductModel item in this.ProductCatalog)
+                foreach (ProductModel item in ProductCatalog)
                 {
                     result += Convert.ToDouble(item.ItemPrice);
                 }
-                return "Total pris: "+result+",-";
-            } 
+                foreach (ProductModel item in BoughtProductList)
+                {
+                    result += Convert.ToDouble(item.ItemPrice);
+                }
+                return "Total pris: " + result + ",-";
+            }
         }
         public string ListIsEmpty
         {

@@ -22,7 +22,7 @@ namespace ShoppingList.ViewModel
     {
         #region Instance Fields
         private ShoppingListModel _selectedShoppingList;
-        private ProductModel _selectedShoppingListItemVM;
+        private ProductModel _selectedProductListOnSelectedShoppingListItem;
         private double _selectedListTotalPrice;
         #endregion
 
@@ -54,9 +54,25 @@ namespace ShoppingList.ViewModel
             }
         }
         public static ObservableCollection<ProductModel> ProductListOnSelectedShoppingList { get; set; }
+        public static ObservableCollection<ProductModel> BoughtProductOnSelectedShoppingList { get; set; }
         public ObservableCollection<ProductModel> FilteredCollection { get; set; }
 
-        public ProductModel ProductListOnSelectedShoppingListItem { get; set; }
+        public ProductModel SelectedProductListOnSelectedShoppingListItem
+        {
+            get { return _selectedProductListOnSelectedShoppingListItem; }
+            set
+            {
+                _selectedProductListOnSelectedShoppingListItem = value;
+                if (_selectedProductListOnSelectedShoppingListItem != null)
+                {
+                    SelectedShoppingList.BoughtProductList.Add(SelectedProductListOnSelectedShoppingListItem);
+                    ProductListOnSelectedShoppingList.Remove(SelectedProductListOnSelectedShoppingListItem);
+                    OnPropertyChanged(nameof(BoughtProductOnSelectedShoppingList));
+                    PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
+                    // tag selected product og smid det i købt liste
+                }
+            }
+        }
         FilterHandler filter = new FilterHandler();
 
         public ObservableCollection<ShoppingListModel> ShoppingListList { get; set; }
@@ -69,9 +85,11 @@ namespace ShoppingList.ViewModel
                 if (_selectedShoppingList != null)
                 {
                     ProductListOnSelectedShoppingList = _selectedShoppingList.ProductCatalog;
+                    BoughtProductOnSelectedShoppingList = _selectedShoppingList.BoughtProductList;
                     RefreshTotalPrice();
                 }
                 OnPropertyChanged(nameof(ProductListOnSelectedShoppingList));
+                OnPropertyChanged(nameof(BoughtProductOnSelectedShoppingList));
                 OnPropertyChanged(nameof(SelectedListTotalPrice));
                 ShowViewShoppinglistPageMethod();
             }
@@ -258,7 +276,7 @@ namespace ShoppingList.ViewModel
         {
             if (_selectedShoppingList != null)
             {
-                ProductListOnSelectedShoppingList.Remove(ProductListOnSelectedShoppingListItem);   
+                ProductListOnSelectedShoppingList.Remove(SelectedProductListOnSelectedShoppingListItem);   
                 PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
                 RefreshTotalPrice();
             }
