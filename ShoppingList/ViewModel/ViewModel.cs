@@ -52,7 +52,8 @@ namespace ShoppingList.ViewModel
                 return new List<string> { "Opskrift", "Dagligvarer", "Sexlegetøj", "Andet" };
             }
         }
-        public ObservableCollection<ProductModel> ProductListOnSelectedShoppingList { get; set; }
+        public static ObservableCollection<ProductModel> ProductListOnSelectedShoppingList { get; set; }
+        public ObservableCollection<ProductModel> FilteredCollection { get; set; }
         public ProductModel ProductListOnSelectedShoppingListItem { get; set; }
         FilterHandler filter = new FilterHandler();
 
@@ -173,11 +174,10 @@ namespace ShoppingList.ViewModel
         public void FilterVeggies()
         {
             filter.FilterVeggies();
-            ObservableCollection<ProductModel> Copy = new ObservableCollection<ProductModel>(ProductListOnSelectedShoppingList);
-            ProductListOnSelectedShoppingList.Clear();
+            FilteredCollection.Clear();
             foreach (var item in filter.productCatalogFilters)
             {
-                ProductListOnSelectedShoppingList.Add(item);
+                FilteredCollection.Add(item);
 
             }
         }
