@@ -153,11 +153,12 @@ namespace ShoppingList.ViewModel
 
         public void ConvertAndSort()
         {
+
             List<ProductModel> sortedList = ProductListOnSelectedShoppingList.ToList();
 
-            sortedList.OrderBy(i => i.ItemCatagory).ThenBy(i => i.ItemPrice);
+            sortedList = sortedList.OrderBy(i => i.ItemCatagory).ToList();
 
-            ProductListOnSelectedShoppingList.Clear();
+                ProductListOnSelectedShoppingList.Clear();
 
             foreach (var item in sortedList)
             {
@@ -177,6 +178,7 @@ namespace ShoppingList.ViewModel
         {
             ChangeVisibility(Visibility.Collapsed, Visibility.Visible, Visibility.Collapsed, Visibility.Collapsed);
             RefreshVisiblityProperties();
+            ConvertAndSort();
         }
         public void ShowCreateShoppinglistPageMethod()
         {
