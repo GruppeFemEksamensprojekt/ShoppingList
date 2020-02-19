@@ -54,7 +54,7 @@ namespace ShoppingList.ViewModel
         }
         public ObservableCollection<ProductModel> ProductListOnSelectedShoppingList { get; set; }
         public ProductModel ProductListOnSelectedShoppingListItem { get; set; }
-        public FilterHandler filter { get; set; }
+        FilterHandler filter = new FilterHandler();
 
         public ObservableCollection<ShoppingListModel> ShoppingListList { get; set; }
         public ShoppingListModel SelectedShoppingList

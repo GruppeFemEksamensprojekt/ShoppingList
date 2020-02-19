@@ -11,7 +11,7 @@ namespace ShoppingList.Handlers
     public class FilterHandler
     {
         public ObservableCollection<ProductModel> productCatalogFilters { get; set; }
-        private ViewModel.ViewModel ViewModelRef;
+        public ViewModel.ViewModel ViewModelRef;
 
         public FilterHandler()
         {
@@ -19,7 +19,8 @@ namespace ShoppingList.Handlers
         }
         private ObservableCollection<ProductModel> Filter(string category)
         { 
-            var list = ViewModelRef.ProductListOnSelectedShoppingList.Where(x => x.ItemCatagory == category);
+            List<ProductModel> list = new List<ProductModel>();
+            list = ViewModelRef.ProductListOnSelectedShoppingList.Where(x => x.ItemCatagory == category).ToList();
            return productCatalogFilters = new ObservableCollection<ProductModel>(list);
         }
         public void FilterVeggies()
