@@ -23,6 +23,7 @@ namespace ShoppingList.ViewModel
         #region Instance Fields
         private ShoppingListModel _selectedShoppingList;
         private ProductModel _selectedProductListOnSelectedShoppingListItem;
+        private ProductModel _selectedBoughtProductListOnSelectedShoppingListItem;
         private double _selectedListTotalPrice;
         #endregion
 
@@ -56,7 +57,14 @@ namespace ShoppingList.ViewModel
         public static ObservableCollection<ProductModel> ProductListOnSelectedShoppingList { get; set; }
         public static ObservableCollection<ProductModel> BoughtProductOnSelectedShoppingList { get; set; }
         public ObservableCollection<ProductModel> FilteredCollection { get; set; }
-
+        public ProductModel SelectedBoughtProductListItem 
+        {
+            get { return _selectedBoughtProductListOnSelectedShoppingListItem; }
+            set
+            {
+                _selectedBoughtProductListOnSelectedShoppingListItem = value;
+            }
+        }
         public ProductModel SelectedProductListOnSelectedShoppingListItem
         {
             get { return _selectedProductListOnSelectedShoppingListItem; }
@@ -245,7 +253,7 @@ namespace ShoppingList.ViewModel
         {
             ChangeVisibility(Visibility.Collapsed, Visibility.Visible, Visibility.Collapsed, Visibility.Collapsed);
             RefreshVisiblityProperties();
-            ConvertAndSort();
+            //ConvertAndSort();
         }
         public void ShowCreateShoppinglistPageMethod()
         {
@@ -276,7 +284,7 @@ namespace ShoppingList.ViewModel
         {
             if (_selectedShoppingList != null)
             {
-                ProductListOnSelectedShoppingList.Remove(SelectedProductListOnSelectedShoppingListItem);   
+                BoughtProductOnSelectedShoppingList.Remove(SelectedBoughtProductListItem);   
                 PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
                 RefreshTotalPrice();
             }

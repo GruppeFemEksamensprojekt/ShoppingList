@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShoppingList.Model;
+using ShoppingList.Persistancy;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +24,17 @@ namespace ShoppingList.View.Include
         public SelectedShoppingListPageUC()
         {
             this.InitializeComponent();
+            BoughtListView.DragItemsCompleted += BoughtListView_DragItemsCompleted;
+            BaseProductList.DragItemsCompleted += BaseProductList_DragItemsCompleted;
+        }
+
+        private void BoughtListView_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+        {
+            PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
+        }
+        private void BaseProductList_DragItemsCompleted(ListViewBase sender, DragItemsCompletedEventArgs args)
+        {
+            PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
         }
     }
 }
