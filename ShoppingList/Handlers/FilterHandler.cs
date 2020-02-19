@@ -19,8 +19,9 @@ namespace ShoppingList.Handlers
         }
         private ObservableCollection<ProductModel> Filter(string category)
         {
+            ObservableCollection<ProductModel> Results;
            var list = ViewModelRef.ProductListOnSelectedShoppingList.Where(x => x.ItemCatagory == category);
-           return new ObservableCollection<ProductModel>(list);
+           return Results = new ObservableCollection<ProductModel>(list);
         }
         public void FilterVeggies()
         {
