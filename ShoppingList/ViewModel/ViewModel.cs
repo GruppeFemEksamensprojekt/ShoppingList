@@ -30,6 +30,7 @@ namespace ShoppingList.ViewModel
         public ViewModel()
         {
             StartPageVisibility();
+            FilteredCollection = new ObservableCollection<ProductModel>();
             ShoppingListList = ShoppingListSingleton.Instance.ShoppingListList;
             CreateShoppingListCommand = new RelayCommand(CreateShoppingList, null);
             AddItemToSelectedShoppinglistProductlistCommand = new RelayCommand(AddItemToSelectedShoppinglistProductlistMethod, null);
