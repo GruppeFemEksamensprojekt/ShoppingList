@@ -153,13 +153,11 @@ namespace ShoppingList.ViewModel
 
         public void ConvertAndSort()
         {
-            List<ProductModel> sortedList = new List<ProductModel>(ProductListOnSelectedShoppingList);
+            List<ProductModel> sortedList = ProductListOnSelectedShoppingList.ToList();
 
-            sortedList.OrderByDescending(i => i.ItemCatagory);
+            sortedList.OrderBy(i => i.ItemCatagory).ThenBy(i => i.ItemPrice);
 
             ProductListOnSelectedShoppingList.Clear();
-
-            //var newObservableCollection = new ObservableCollection<ProductModel>();
 
             foreach (var item in sortedList)
             {
