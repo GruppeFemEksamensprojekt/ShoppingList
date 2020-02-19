@@ -65,6 +65,12 @@
                                 Command="{Binding DeleteShoppingListCommand}"
                                 Content="Slet Liste"
                                 Foreground="White" />
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Command="{Binding SortCommand}"
+                                Content="Sort Liste"
+                                Foreground="White" />
                         </StackPanel>
                     </Flyout>
                 </Button.Flyout>

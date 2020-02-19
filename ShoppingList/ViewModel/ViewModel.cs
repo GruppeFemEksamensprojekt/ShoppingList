@@ -39,6 +39,7 @@ namespace ShoppingList.ViewModel
             NavigateToCreateItemCommand = new RelayCommand(ShowCreateItemPageMethod, null);
             NavigateBackToFrontpageCommand = new RelayCommand(StartPageVisibility, null);
             NavigateBackToShoppingListPageCommand = new RelayCommand(ShowViewShoppinglistPageMethod, null);
+            SortCommand = new RelayCommand(ConvertAndSort, null);
         }
         #endregion
 
@@ -82,6 +83,7 @@ namespace ShoppingList.ViewModel
         public ICommand NavigateToCreateItemCommand { get; set; }
         public ICommand NavigateBackToFrontpageCommand { get; set; }
         public ICommand NavigateBackToShoppingListPageCommand { get; set; }
+        public ICommand SortCommand { get; set; }
         #endregion
         
         #region Product Properties
@@ -147,6 +149,22 @@ namespace ShoppingList.ViewModel
             ShowViewShoppinglistPageVisibility = showViewShoppingPageVis;
             ShowCreateShoppinglistPageVisibility = showCreateShoppinglistVis;
             ShowCreateItemPageVisibility = showCreateItemPageVis;
+        }
+
+        public void ConvertAndSort()
+        {
+            List<ProductModel> sortedList = new List<ProductModel>(ProductListOnSelectedShoppingList);
+
+            sortedList.OrderByDescending(i => i.ItemCatagory);
+
+            ProductListOnSelectedShoppingList.Clear();
+
+            //var newObservableCollection = new ObservableCollection<ProductModel>();
+
+            foreach (var item in sortedList)
+            {
+                ProductListOnSelectedShoppingList.Add(item);
+            }
         }
 
         #region "Navigation Methods" - Warning.. NOT VERY DRY CODE
