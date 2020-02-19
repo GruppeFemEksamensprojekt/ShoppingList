@@ -76,7 +76,17 @@
                                 VerticalAlignment="Stretch"
                                 Command="{Binding FilterFruitCommand}"
                                 Content="filterTest"
-                                Foreground="White" />
+                                Foreground="White" >
+                                
+                                <Button.Flyout>
+                                    <Flyout>
+                                        <StackPanel>
+                                            <ListView ItemsSource="{Binding FilteredCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ListView>
+                                        </StackPanel>
+                                    </Flyout>
+                                </Button.Flyout>
+
+                                </Button>
                         </StackPanel>
                     </Flyout>
                 </Button.Flyout>

@@ -54,6 +54,7 @@ namespace ShoppingList.ViewModel
         }
         public static ObservableCollection<ProductModel> ProductListOnSelectedShoppingList { get; set; }
         public ObservableCollection<ProductModel> FilteredCollection { get; set; }
+
         public ProductModel ProductListOnSelectedShoppingListItem { get; set; }
         FilterHandler filter = new FilterHandler();
 
@@ -174,11 +175,10 @@ namespace ShoppingList.ViewModel
         public void FilterVeggies()
         {
             filter.FilterVeggies();
-            FilteredCollection.Clear();
+            if (FilteredCollection != null ) FilteredCollection.Clear();
             foreach (var item in filter.productCatalogFilters)
             {
                 FilteredCollection.Add(item);
-
             }
         }
 
