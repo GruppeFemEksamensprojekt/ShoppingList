@@ -53,6 +53,7 @@ namespace ShoppingList.ViewModel
         }
         public ObservableCollection<ProductModel> ProductListOnSelectedShoppingList { get; set; }
         public ProductModel ProductListOnSelectedShoppingListItem { get; set; }
+        public FilterHandler filter { get; set; }
 
         public ObservableCollection<ShoppingListModel> ShoppingListList { get; set; }
         public ShoppingListModel SelectedShoppingList
@@ -165,6 +166,44 @@ namespace ShoppingList.ViewModel
                 ProductListOnSelectedShoppingList.Add(item);
             }
         }
+
+        #region FilterCategories
+        public void FilterVeggies()
+        {
+            filter.FilterVeggies();
+        }
+
+        public void FilterMeat()
+        {
+            filter.FilterMeat();
+        }
+
+        public void FilterDairy()
+        {
+            filter.FilterDairy();
+        }
+
+        public void FilterAlcohol()
+        {
+            filter.FilterAlcohol();
+        }
+
+        public void FilterDessert()
+        {
+            filter.FilterDessert();
+        }
+
+        public void FilterCandyAndChips()
+        {
+            filter.FilterCandyAndChips();
+        }
+
+        public void FilterOther()
+        {
+            filter.FilterOther();
+        }
+        #endregion
+
 
         #region "Navigation Methods" - Warning.. NOT VERY DRY CODE
         public void StartPageVisibility()

@@ -25,23 +25,31 @@ namespace ShoppingList.Handlers
         }
         public void FilterVeggies()
         {
-            Filter("Frugt & Grønt");
+            Filter("Frugt og Grønt");
         }
         public void FilterMeat()
         {
             Filter("Kød");
         }
-        public void FilterGeneral()
+        public void FilterDessert()
         {
-            Filter("Generalt");
+            Filter("Dessert");
         }
-        public void FilterToiletPaper()
+        public void FilterAlcohol()
         {
-            Filter("Toiletpapir");
+            Filter("Alkohol");
         }
         public void FilterDairy()
         {
-            Filter("Majeriprodukter");
+            Filter("Mælkeprodukter");
+        }
+        public void FilterCandyAndChips()
+        {
+            Filter("Slik og Chips");
+        }
+        public void FilterOther()
+        {
+            Filter("Diverse");
         }
     }
 }
