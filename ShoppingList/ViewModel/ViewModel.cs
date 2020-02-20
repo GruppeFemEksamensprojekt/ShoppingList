@@ -63,6 +63,14 @@ namespace ShoppingList.ViewModel
             set
             {
                 _selectedBoughtProductListOnSelectedShoppingListItem = value;
+                if (_selectedBoughtProductListOnSelectedShoppingListItem != null)
+                {
+                        SelectedShoppingList.BoughtProductList.Remove(SelectedBoughtProductListItem);
+                        ProductListOnSelectedShoppingList.Add(SelectedBoughtProductListItem);
+                        _selectedBoughtProductListOnSelectedShoppingListItem = null;
+                        OnPropertyChanged(nameof(ProductListOnSelectedShoppingList));
+                        PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
+                }
             }
         }
         public ProductModel SelectedProductListOnSelectedShoppingListItem
@@ -75,10 +83,11 @@ namespace ShoppingList.ViewModel
                 {
                     SelectedShoppingList.BoughtProductList.Add(SelectedProductListOnSelectedShoppingListItem);
                     ProductListOnSelectedShoppingList.Remove(SelectedProductListOnSelectedShoppingListItem);
+                    _selectedProductListOnSelectedShoppingListItem = null;
                     OnPropertyChanged(nameof(BoughtProductOnSelectedShoppingList));
                     PersistancyService.SaveShopListAsJsonAsync(ShoppingListSingleton.Instance.ShoppingListList);
-                    // tag selected product og smid det i købt liste
                 }
+                // tag selected product og smid det i købt liste
             }
         }
         FilterHandler filter = new FilterHandler();
