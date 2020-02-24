@@ -154,9 +154,9 @@ namespace ShoppingList.ViewModel
         {
             ContentDialog messageDialog = new ContentDialog()
             {
-                Title = "Fiskemand",
-                Content = "Fuck af",
-                CloseButtonText = "Bol mig"
+                Title = "Fejl",
+                Content = "Mangler Information",
+                CloseButtonText = "OK"
             };
             if (string.IsNullOrEmpty(ShoppingListNameVM) || string.IsNullOrEmpty(CategoryVM))
             {
